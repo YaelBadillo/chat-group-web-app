@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import { Dashboard, Home, LogIn, SignUp } from './pages'
 
 const App = () => {
-  const [count, setCount] = useState(0);
-
   return (
-    <button className="padding rounded bg-blue-500 py-2 px-2 font-bold text-white">
-      My button
-    </button>
-  );
-};
+    <BrowserRouter>
+      <div className="h-full w-full">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/auth/signup" element={<SignUp />} />
+          <Route path="/auth/login" element={<LogIn />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  )
+}
 
-export default App;
+export default App
