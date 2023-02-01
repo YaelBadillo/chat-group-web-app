@@ -1,6 +1,10 @@
+import { ChannelBar } from '../components/channel-bar'
+
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div className="grid w-full h-full">
+      <ChannelBar />
+    </div>
   )
 }
 
