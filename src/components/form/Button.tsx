@@ -6,7 +6,10 @@ interface ButtonProps {
 
 export const Button: FC<ButtonProps> = ({ content }) => {
   return (
-    <button className="mt-2 rounded-lg bg-button-primary p-3 text-white">
+    <button
+      type="submit"
+      className="mt-2 rounded-lg bg-button-primary p-3 text-white"
+    >
       {content}
     </button>
   )

@@ -1,21 +1,26 @@
-import { useFormik } from 'formik'
-
-import { Input, Button, Form, TextSuggestionLink } from '../components/form'
-import { TextSuggestion } from '../components/form/TextSuggestion';
+import {
+  Input,
+  Button,
+  Form,
+  TextSuggestion,
+  TextSuggestionLink,
+} from '../components/form'
+import { useForm } from '../hooks'
 
 const SignUp = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      password: '',
-      passwordConfirm: '',
-    },
-    onSubmit: (values) => console.log(values),
-  })
+  const { formik, execute, status, value, error } = useForm<{
+    name: string
+    password: string
+    passwordConfirm: string
+  }>({ name: '', password: '', passwordConfirm: '' })
 
   return (
     <div className="grid h-full w-full content-center bg-secondary">
-      <Form>
+      <Form
+        title="Create your account"
+        text="Join thousands of people around the world"
+        handleSubmit={formik.handleSubmit}
+      >
         <Input
           type="text"
           name="name"
@@ -44,9 +49,7 @@ const SignUp = () => {
 
         <TextSuggestion>
           Already have an account?{' '}
-          <TextSuggestionLink>
-            Log in 
-          </TextSuggestionLink>
+          <TextSuggestionLink to="/auth/login">Log in</TextSuggestionLink>
         </TextSuggestion>
       </Form>
     </div>
