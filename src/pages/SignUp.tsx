@@ -4,7 +4,7 @@ import {
   Form,
   TextSuggestion,
   TextSuggestionLink,
-} from '../components/form'
+} from '../features/auth/components/form'
 import { useForm } from '../hooks'
 
 const SignUp = () => {
