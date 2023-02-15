@@ -1,10 +1,11 @@
+import { Button, Form, Input } from '../components/form'
 import {
-  Button,
-  Form,
-  Input,
+  Description,
+  FormContainer,
+  Title,
   TextSuggestion,
   TextSuggestionLink,
-} from '../features/auth/components/form'
+} from '../features/auth'
 import { useForm } from '../hooks'
 
 const LogIn = () => {
@@ -15,30 +16,35 @@ const LogIn = () => {
 
   return (
     <div className="grid h-full w-full content-center bg-secondary">
-      <Form title="Welcome back" text="" handleSubmit={formik.handleSubmit}>
-        <Input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          startIcon="badge"
-        />
-        <Input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          startIcon="lock"
-        />
-        <Button content="Continue" />
+      <FormContainer>
+        <Title>Welcome back</Title>
+        <Description> </Description>
+
+        <Form handleSubmit={formik.handleSubmit}>
+          <Input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            startIcon="badge"
+          />
+          <Input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            startIcon="lock"
+          />
+          <Button content="Continue" />
+        </Form>
 
         <TextSuggestion>
           Don't have an account?{' '}
           <TextSuggestionLink to="/auth/signup">Sign up</TextSuggestionLink>
         </TextSuggestion>
-      </Form>
+      </FormContainer>
     </div>
   )
 }
