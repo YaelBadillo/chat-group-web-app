@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 import { Button, Form, Input } from '../components/form'
 import {
@@ -17,7 +17,7 @@ const LogIn = () => {
       name: string
       password: string
     }
-  >({ name: '', password: '' })
+  >({ name: '', password: '' }, 'http://localhost:3000/auth/login')
 
   return (
     <div className="grid h-full w-full content-center bg-secondary">
