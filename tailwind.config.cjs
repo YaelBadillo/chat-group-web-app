@@ -14,6 +14,26 @@ module.exports = {
         'group-image': '#252329',
         'group-name': '#BDBDBD',
       },
+
+      animation: {
+        'loading-400': 'loading 1s ease-in-out 0.4s infinite both',
+        'loading-200': 'loading 1s ease-in-out 0.2s infinite both',
+        'loading-000': 'loading 1s ease-in-out 0s infinite both',
+      },
+
+      keyframes: {
+        loading: {
+          '0%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-300%)',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+          },
+        },
+      },
     },
   },
   plugins: [],

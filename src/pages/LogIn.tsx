@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 
 import { Button, Form, Input } from '../components/form'
+import { Loading } from '../components/loading/Loading'
 import {
   Description,
   FormContainer,
@@ -18,6 +19,8 @@ const LogIn = () => {
       password: string
     }
   >({ name: '', password: '' }, 'http://localhost:3000/auth/login')
+
+  if (status === 'pending') return <Loading />
 
   return (
     <div className="grid h-full w-full content-center bg-secondary">
