@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { Button, Form, Input } from '../components/form'
 import {
   Description,
@@ -9,10 +11,13 @@ import {
 import { useForm } from '../hooks'
 
 const LogIn = () => {
-  const { formik, execute, status, value, error } = useForm<{
-    name: string
-    password: string
-  }>({ name: '', password: '' })
+  const { formik, execute, status, value, error } = useForm<
+    any,
+    {
+      name: string
+      password: string
+    }
+  >({ name: '', password: '' })
 
   return (
     <div className="grid h-full w-full content-center bg-secondary">

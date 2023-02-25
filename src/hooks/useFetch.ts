@@ -1,11 +1,13 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import { fetchData } from '../lib'
 
 import { useAsync } from './useAsync'
 
-export const useFetch = <T = {}>(url: string, config?: AxiosRequestConfig<T>) => {
+type method = 'get' | 'post' | 'patch' | 'delete' | 'update'
+
+export const useFetch = <T, D = {}>(url: string, method: method, body: D) => {
   const immediate: boolean = false
   return useAsync(
-    () => axios(url, config).then((response) => response.data),
+    () => fetchData<T, D>(url, method, body).then((data) => data),
     immediate
   )
 }
