@@ -2,7 +2,7 @@ import { useFormik, FormikValues } from 'formik'
 
 import { useFetch } from './useFetch'
 
-export const useForm = <T, D extends FormikValues>(initialValues: D) => {
+export const useForm = <T, D extends FormikValues>(initialValues: D, url: string) => {
   const formik = useFormik<D>({
     initialValues,
     onSubmit: () => {
@@ -11,7 +11,7 @@ export const useForm = <T, D extends FormikValues>(initialValues: D) => {
   })
 
   const { execute, status, value, error } = useFetch<T, D>(
-    'http://localhost:3000/auth/login',
+    url,
     'post',
     formik.values
   )
