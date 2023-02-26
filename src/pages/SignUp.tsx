@@ -1,6 +1,7 @@
 import { useForm } from '../hooks'
 
 import { Button, Form, Input } from '../components/form'
+import { Loading } from '../components/loading'
 import {
   Description,
   FormContainer,
@@ -8,13 +9,27 @@ import {
   TextSuggestionLink,
   Title,
 } from '../features/auth'
+import { useAuth } from '../hooks'
+import { useEffect } from 'react';
+
+interface SignUpInitialValues {
+  name: string
+  password: string
+  passwordConfirm: string
+}
 
 const SignUp = () => {
-  const { formik, execute, status, value, error } = useForm<{
-    name: string
-    password: string
-    passwordConfirm: string
-  }>({ name: '', password: '', passwordConfirm: '' })
+  const { formik, value, status, error } = useAuth<SignUpInitialValues>(
+    'http://localhost:3000/auth/signup',
+    '/auth/login',
+    {
+      name: '',
+      password: '',
+      passwordConfirm: '',
+    }
+  )
+
+  if (status === 'pending') return <Loading />
 
   return (
     <div className="grid h-full w-full content-center bg-secondary">
