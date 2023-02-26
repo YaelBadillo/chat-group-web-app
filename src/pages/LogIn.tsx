@@ -1,7 +1,5 @@
-import { useEffect } from 'react'
-
 import { Button, Form, Input } from '../components/form'
-import { Loading } from '../components/loading/Loading'
+import { Loading } from '../components/loading'
 import {
   Description,
   FormContainer,
@@ -9,16 +7,22 @@ import {
   TextSuggestion,
   TextSuggestionLink,
 } from '../features/auth'
-import { useForm } from '../hooks'
+import { useAuth } from '../hooks'
+
+interface LogInInitialValues {
+  name: string
+  password: string
+}
 
 const LogIn = () => {
-  const { formik, execute, status, value, error } = useForm<
-    any,
+  const { formik, status, error } = useAuth<LogInInitialValues>(
+    'http://localhost:3000/auth/login',
+    '/dashboard',
     {
-      name: string
-      password: string
+      name: '',
+      password: '',
     }
-  >({ name: '', password: '' }, 'http://localhost:3000/auth/login')
+  )
 
   if (status === 'pending') return <Loading />
 
