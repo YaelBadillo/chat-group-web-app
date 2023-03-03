@@ -1,5 +1,3 @@
-import { useForm } from '../hooks'
-
 import { Button, Form, Input } from '../components/form'
 import { Loading } from '../components/loading'
 import {
@@ -10,7 +8,6 @@ import {
   Title,
 } from '../features/auth'
 import { useAuth } from '../hooks'
-import { useEffect } from 'react';
 
 interface SignUpInitialValues {
   name: string
@@ -18,15 +15,21 @@ interface SignUpInitialValues {
   passwordConfirm: string
 }
 
+const signUpFormValues = {
+  url: 'http://localhost:3000/auth/signup',
+  to: '/auth/login',
+  initialValues: {
+    name: '',
+    password: '',
+    passwordConfirm: '',
+  },
+}
+
 const SignUp = () => {
   const { formik, value, status, error } = useAuth<SignUpInitialValues>(
-    'http://localhost:3000/auth/signup',
-    '/auth/login',
-    {
-      name: '',
-      password: '',
-      passwordConfirm: '',
-    }
+    signUpFormValues.url,
+    signUpFormValues.to,
+    signUpFormValues.initialValues
   )
 
   if (status === 'pending') return <Loading />

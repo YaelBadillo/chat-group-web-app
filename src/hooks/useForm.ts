@@ -4,7 +4,8 @@ import { useFetch } from './useFetch'
 
 export const useForm = <D extends FormikValues, T = {}>(
   url: string,
-  initialValues: D
+  initialValues: D,
+  withCredentials: boolean = false
 ) => {
   const formik = useFormik<D>({
     initialValues,
@@ -16,7 +17,8 @@ export const useForm = <D extends FormikValues, T = {}>(
   const { execute, status, value, error } = useFetch<T, D>(
     url,
     'post',
-    formik.values
+    formik.values,
+    withCredentials
   )
 
   return { formik, status, value, error }

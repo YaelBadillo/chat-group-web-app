@@ -14,14 +14,22 @@ interface LogInInitialValues {
   password: string
 }
 
+const logInFormValues = {
+  url: 'http://localhost:3000/auth/login',
+  to: '/dashboard',
+  initialValues: {
+    name: '',
+    password: '',
+  },
+  withCredentials: true,
+}
+
 const LogIn = () => {
   const { formik, status, error } = useAuth<LogInInitialValues>(
-    'http://localhost:3000/auth/login',
-    '/dashboard',
-    {
-      name: '',
-      password: '',
-    }
+    logInFormValues.url,
+    logInFormValues.to,
+    logInFormValues.initialValues,
+    logInFormValues.withCredentials
   )
 
   if (status === 'pending') return <Loading />
