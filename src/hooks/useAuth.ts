@@ -9,7 +9,7 @@ export const useAuth = <D extends FormikValues, T = {}>(
   url: string,
   to: string,
   initialValues: D,
-  withCredentials: boolean = false 
+  withCredentials: boolean = false
 ) => {
   const { formik, status, value, error } = useForm<D, T>(
     url,
