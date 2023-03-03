@@ -8,9 +8,14 @@ import { useForm } from './useForm'
 export const useAuth = <D extends FormikValues, T = {}>(
   url: string,
   to: string,
-  initialValues: D
+  initialValues: D,
+  withCredentials: boolean = false 
 ) => {
-  const { formik, status, value, error } = useForm<D, T>(url, initialValues)
+  const { formik, status, value, error } = useForm<D, T>(
+    url,
+    initialValues,
+    withCredentials
+  )
 
   const navigate = useNavigate()
 
@@ -22,4 +27,3 @@ export const useAuth = <D extends FormikValues, T = {}>(
 
   return { formik, status, value, error }
 }
-

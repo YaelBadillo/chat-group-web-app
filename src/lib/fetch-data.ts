@@ -5,13 +5,15 @@ type method = 'get' | 'post' | 'patch' | 'delete' | 'update'
 export const fetchData = async <T, D = {}>(
   url: string,
   method: method,
-  body: D
+  body: D,
+  withCredentials: boolean
 ): Promise<T> => {
   const response: AxiosResponse<T> = await axios<T, AxiosResponse<T, D>, D>(
     url,
     {
       data: body,
       method,
+      withCredentials,
     }
   )
   if (response.status !== 200 && response.status !== 201)

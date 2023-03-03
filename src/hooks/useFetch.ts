@@ -4,10 +4,16 @@ import { useAsync } from './useAsync'
 
 type method = 'get' | 'post' | 'patch' | 'delete' | 'update'
 
-export const useFetch = <T, D = {}>(url: string, method: method, body: D) => {
+export const useFetch = <T, D = {}>(
+  url: string,
+  method: method,
+  body: D,
+  withCredentials: boolean = false
+) => {
   const immediate: boolean = false
   return useAsync(
-    () => fetchData<T, D>(url, method, body).then((data) => data),
+    () =>
+      fetchData<T, D>(url, method, body, withCredentials).then((data) => data),
     immediate
   )
 }
