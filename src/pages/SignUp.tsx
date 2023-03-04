@@ -8,9 +8,9 @@ import {
   TextSuggestion,
   TextSuggestionLink,
   Title,
+  signUpValidation,
 } from '../features/auth'
 import { useAuth } from '../hooks'
-import { signUpValidation } from '../features/auth'
 
 const signUpFormValues = {
   url: 'http://localhost:3000/auth/signup',

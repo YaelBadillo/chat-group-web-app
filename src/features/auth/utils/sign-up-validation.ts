@@ -1,22 +1,22 @@
-import { ZodError, z } from 'zod'
+import { z, ZodError } from 'zod'
+
+import { getErrors } from './utils'
 
 export const signUpValidation = (values: SignUpFormValues) => {
-  const errors: { [key: string]: string } = {}
+  let errors: { [key: string]: string } = {}
 
   try {
     SignUpValidation.parse(values)
   } catch (error: unknown) {
     if (error instanceof ZodError) {
-      error.issues.forEach(({ path, message }) => {
-        errors[typeof path === 'string' ? path : String(path)] = message
-      })
+      errors = getErrors(error)
     }
   }
 
   return errors
 }
 
-export const SignUpValidation = z
+const SignUpValidation = z
   .object({
     name: z
       .string()

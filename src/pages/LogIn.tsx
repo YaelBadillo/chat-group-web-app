@@ -1,4 +1,4 @@
-import { Button, Form, Input } from '../components/form'
+import { Button, Form, Input, TextError } from '../components/form'
 import { Loading } from '../components/loading'
 import {
   Description,
@@ -6,13 +6,9 @@ import {
   Title,
   TextSuggestion,
   TextSuggestionLink,
+  logInValidation,
 } from '../features/auth'
 import { useAuth } from '../hooks'
-
-interface LogInInitialValues {
-  name: string
-  password: string
-}
 
 const logInFormValues = {
   url: 'http://localhost:3000/auth/login',
@@ -22,14 +18,20 @@ const logInFormValues = {
     password: '',
   },
   withCredentials: true,
+  initialTouched: {
+    name: false,
+    password: false,
+  },
 }
 
 const LogIn = () => {
-  const { formik, status, error } = useAuth<LogInInitialValues>({
+  const { formik, status, error } = useAuth<LogInFormValues>({
     url: logInFormValues.url,
     to: logInFormValues.to,
     initialValues: logInFormValues.initialValues,
     withCredentials: logInFormValues.withCredentials,
+    validate: logInValidation,
+    initialTouched: logInFormValues.initialTouched,
   })
 
   if (status === 'pending') return <Loading />
@@ -46,17 +48,35 @@ const LogIn = () => {
             name="name"
             placeholder="Name"
             value={formik.values.name}
+            required={true}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             startIcon="badge"
+            error={formik.touched.name && formik.errors.name ? true : false}
           />
+          {formik.touched.name && formik.errors.name ? (
+            <TextError textError={formik.errors.name} />
+          ) : (
+            <></>
+          )}
           <Input
             type="password"
             name="password"
             placeholder="Password"
             value={formik.values.password}
+            required={true}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             startIcon="lock"
+            error={
+              formik.touched.password && formik.errors.password ? true : false
+            }
           />
+          {formik.touched.password && formik.errors.password ? (
+            <TextError textError={formik.errors.password} />
+          ) : (
+            <></>
+          )}
           <Button content="Continue" />
         </Form>
 
