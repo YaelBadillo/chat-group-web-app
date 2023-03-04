@@ -25,12 +25,12 @@ const logInFormValues = {
 }
 
 const LogIn = () => {
-  const { formik, status, error } = useAuth<LogInInitialValues>(
-    logInFormValues.url,
-    logInFormValues.to,
-    logInFormValues.initialValues,
-    logInFormValues.withCredentials
-  )
+  const { formik, status, error } = useAuth<LogInInitialValues>({
+    url: logInFormValues.url,
+    to: logInFormValues.to,
+    initialValues: logInFormValues.initialValues,
+    withCredentials: logInFormValues.withCredentials,
+  })
 
   if (status === 'pending') return <Loading />
 

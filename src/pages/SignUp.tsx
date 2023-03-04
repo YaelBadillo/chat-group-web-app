@@ -1,4 +1,6 @@
-import { Button, Form, Input } from '../components/form'
+import { useEffect } from 'react'
+
+import { Button, Form, Input, TextError } from '../components/form'
 import { Loading } from '../components/loading'
 import {
   Description,
@@ -8,12 +10,7 @@ import {
   Title,
 } from '../features/auth'
 import { useAuth } from '../hooks'
-
-interface SignUpInitialValues {
-  name: string
-  password: string
-  passwordConfirm: string
-}
+import { signUpValidation } from '../features/auth'
 
 const signUpFormValues = {
   url: 'http://localhost:3000/auth/signup',
@@ -23,14 +20,26 @@ const signUpFormValues = {
     password: '',
     passwordConfirm: '',
   },
+  initialTouched: {
+    name: false,
+    password: false,
+    passwordConfirm: false,
+  },
 }
 
 const SignUp = () => {
-  const { formik, value, status, error } = useAuth<SignUpInitialValues>(
-    signUpFormValues.url,
-    signUpFormValues.to,
-    signUpFormValues.initialValues
-  )
+  const { formik, value, status, error } = useAuth<SignUpFormValues>({
+    url: signUpFormValues.url,
+    to: signUpFormValues.to,
+    initialValues: signUpFormValues.initialValues,
+    validate: signUpValidation,
+    initialTouched: signUpFormValues.initialTouched,
+  })
+
+  useEffect(() => {
+    console.log(formik.touched.name)
+    console.log(formik.errors.name)
+  }, [formik.touched])
 
   if (status === 'pending') return <Loading />
 
@@ -47,24 +56,51 @@ const SignUp = () => {
             placeholder="Name"
             value={formik.values.name}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             startIcon="badge"
+            error={formik.touched.name && formik.errors.name ? true : false}
           />
+          {formik.touched.name && formik.errors.name ? (
+            <TextError textError={formik.errors.name} />
+          ) : (
+            <></>
+          )}
           <Input
             type="password"
             name="password"
             placeholder="Password"
             value={formik.values.password}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             startIcon="lock"
+            error={
+              formik.touched.password && formik.errors.password ? true : false
+            }
           />
+          {formik.touched.password && formik.errors.password ? (
+            <TextError textError={formik.errors.password} />
+          ) : (
+            <></>
+          )}
           <Input
             type="password"
             name="passwordConfirm"
             placeholder="Confirm password"
             value={formik.values.passwordConfirm}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             startIcon="enhanced_encryption"
+            error={
+              formik.touched.passwordConfirm && formik.errors.passwordConfirm
+                ? true
+                : false
+            }
           />
+          {formik.touched.passwordConfirm && formik.errors.passwordConfirm ? (
+            <TextError textError={formik.errors.passwordConfirm} />
+          ) : (
+            <></>
+          )}
           <Button content="Continue" />
         </Form>
 

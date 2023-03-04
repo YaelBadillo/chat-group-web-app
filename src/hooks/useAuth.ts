@@ -1,21 +1,36 @@
 import { useEffect } from 'react'
 
-import { FormikValues } from 'formik'
+import { FormikErrors, FormikTouched, FormikValues } from 'formik'
 import { useNavigate } from 'react-router-dom'
 
 import { useForm } from './useForm'
 
-export const useAuth = <D extends FormikValues, T = {}>(
-  url: string,
-  to: string,
-  initialValues: D,
-  withCredentials: boolean = false
-) => {
-  const { formik, status, value, error } = useForm<D, T>(
+interface UseAuthProperties<D> {
+  url: string
+  to: string
+  initialValues: D
+  withCredentials?: boolean
+  validate?:
+    | ((values: D) => void | object | Promise<FormikErrors<D>>)
+    | undefined
+  initialTouched?: FormikTouched<D> | undefined
+}
+
+export const useAuth = <D extends FormikValues, T = {}>({
+  url,
+  to,
+  initialValues,
+  withCredentials = false,
+  validate = undefined,
+  initialTouched = undefined,
+}: UseAuthProperties<D>) => {
+  const { formik, status, value, error } = useForm<D, T>({
     url,
     initialValues,
-    withCredentials
-  )
+    withCredentials,
+    validate,
+    initialTouched,
+  })
 
   const navigate = useNavigate()
 

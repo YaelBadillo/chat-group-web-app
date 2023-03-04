@@ -1,17 +1,31 @@
-import { useFormik, FormikValues } from 'formik'
+import { useFormik, FormikValues, FormikErrors, FormikTouched } from 'formik'
 
 import { useFetch } from './useFetch'
 
-export const useForm = <D extends FormikValues, T = {}>(
-  url: string,
-  initialValues: D,
-  withCredentials: boolean = false
-) => {
+interface UseFormProperties<D> {
+  url: string
+  initialValues: D
+  withCredentials?: boolean
+  validate?:
+    | ((values: D) => void | object | Promise<FormikErrors<D>>)
+    | undefined
+  initialTouched?: FormikTouched<D> | undefined
+}
+
+export const useForm = <D extends FormikValues, T = {}>({
+  url,
+  initialValues,
+  withCredentials = false,
+  validate = undefined,
+  initialTouched = undefined,
+}: UseFormProperties<D>) => {
   const formik = useFormik<D>({
     initialValues,
     onSubmit: () => {
       execute()
     },
+    validate,
+    initialTouched,
   })
 
   const { execute, status, value, error } = useFetch<T, D>(
