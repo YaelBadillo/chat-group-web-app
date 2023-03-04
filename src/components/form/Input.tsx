@@ -6,6 +6,7 @@ interface InputProps {
   placeholder: string
   autoComplete?: 'off' | 'on'
   value: string
+  required?: boolean
   onChange: ChangeEventHandler<HTMLInputElement>
   onBlur: FocusEventHandler<HTMLInputElement>
   startIcon: string
@@ -22,6 +23,7 @@ export const Input: FC<InputProps> = ({
   placeholder,
   autoComplete,
   value,
+  required,
   onChange,
   onBlur,
   startIcon,
@@ -39,6 +41,7 @@ export const Input: FC<InputProps> = ({
         placeholder={placeholder}
         autoComplete={autoComplete}
         value={value}
+        required={required}
         onChange={onChange}
         onBlur={onBlur}
         className="peer h-7 max-w-max bg-transparent text-gray-light outline-none"

@@ -55,6 +55,7 @@ const SignUp = () => {
             name="name"
             placeholder="Name"
             value={formik.values.name}
+            required={true}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             startIcon="badge"
@@ -70,6 +71,7 @@ const SignUp = () => {
             name="password"
             placeholder="Password"
             value={formik.values.password}
+            required={true}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             startIcon="lock"
@@ -87,6 +89,7 @@ const SignUp = () => {
             name="passwordConfirm"
             placeholder="Confirm password"
             value={formik.values.passwordConfirm}
+            required={true}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             startIcon="enhanced_encryption"
