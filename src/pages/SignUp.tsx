@@ -5,12 +5,13 @@ import { Loading } from '../components/loading'
 import {
   Description,
   FormContainer,
+  SignUpFormEntries,
   TextSuggestion,
   TextSuggestionLink,
   Title,
   signUpValidation,
 } from '../features/auth'
-import { useAuth } from '../hooks'
+import { useAuth } from '../features/auth'
 
 const signUpFormValues = {
   url: 'http://localhost:3000/auth/signup',

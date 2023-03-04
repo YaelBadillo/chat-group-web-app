@@ -7,8 +7,9 @@ import {
   TextSuggestion,
   TextSuggestionLink,
   logInValidation,
+  LogInFormEntries,
 } from '../features/auth'
-import { useAuth } from '../hooks'
+import { useAuth } from '../features/auth'
 
 const logInFormValues = {
   url: 'http://localhost:3000/auth/login',
