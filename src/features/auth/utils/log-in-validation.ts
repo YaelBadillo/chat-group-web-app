@@ -2,7 +2,7 @@ import { z, ZodError } from 'zod'
 
 import { getErrors } from './utils'
 
-export const logInValidation = (values: LogInFormValues) => {
+export const logInValidation = (values: LogInFormEntries) => {
   let errors: { [key: string]: string } = {}
 
   try {

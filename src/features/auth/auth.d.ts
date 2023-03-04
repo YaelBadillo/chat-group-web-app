@@ -1,10 +1,10 @@
-interface SignUpFormValues {
+interface SignUpFormEntries {
   name: string
   password: string
   passwordConfirm: string
 }
 
-interface LogInFormValues {
+interface LogInFormEntries {
   name: string
   password: string
 }

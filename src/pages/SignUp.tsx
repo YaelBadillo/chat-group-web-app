@@ -28,7 +28,7 @@ const signUpFormValues = {
 }
 
 const SignUp = () => {
-  const { formik, value, status, error } = useAuth<SignUpFormValues>({
+  const { formik, value, status, error } = useAuth<SignUpFormEntries>({
     url: signUpFormValues.url,
     to: signUpFormValues.to,
     initialValues: signUpFormValues.initialValues,

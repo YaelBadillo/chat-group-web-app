@@ -25,7 +25,7 @@ const logInFormValues = {
 }
 
 const LogIn = () => {
-  const { formik, status, error } = useAuth<LogInFormValues>({
+  const { formik, status, error } = useAuth<LogInFormEntries>({
     url: logInFormValues.url,
     to: logInFormValues.to,
     initialValues: logInFormValues.initialValues,
