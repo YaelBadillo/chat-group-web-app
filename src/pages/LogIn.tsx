@@ -9,6 +9,7 @@ import {
   logInValidation,
   LogInFormEntries,
   UseAuthProperties,
+  Alert,
 } from '../features/auth'
 import { useAuth } from '../features/auth'
 
@@ -33,7 +34,9 @@ const LogIn = () => {
   if (status === 'pending') return <Loading />
 
   return (
-    <div className="grid h-full w-full content-center bg-secondary">
+    <div className="relative grid h-full w-full content-center bg-secondary">
+      <Alert />
+
       <FormContainer>
         <Title>Welcome back</Title>
         <Description> </Description>
