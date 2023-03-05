@@ -8,10 +8,11 @@ import {
   TextSuggestionLink,
   logInValidation,
   LogInFormEntries,
+  UseAuthProperties,
 } from '../features/auth'
 import { useAuth } from '../features/auth'
 
-const logInFormValues = {
+const logInFormValues: UseAuthProperties<LogInFormEntries> = {
   url: 'http://localhost:3000/auth/login',
   to: '/dashboard',
   initialValues: {
@@ -19,6 +20,7 @@ const logInFormValues = {
     password: '',
   },
   withCredentials: true,
+  validate: logInValidation,
   initialTouched: {
     name: false,
     password: false,
@@ -26,14 +28,7 @@ const logInFormValues = {
 }
 
 const LogIn = () => {
-  const { formik, status, error } = useAuth<LogInFormEntries>({
-    url: logInFormValues.url,
-    to: logInFormValues.to,
-    initialValues: logInFormValues.initialValues,
-    withCredentials: logInFormValues.withCredentials,
-    validate: logInValidation,
-    initialTouched: logInFormValues.initialTouched,
-  })
+  const { formik, status, error } = useAuth<LogInFormEntries>(logInFormValues)
 
   if (status === 'pending') return <Loading />
 

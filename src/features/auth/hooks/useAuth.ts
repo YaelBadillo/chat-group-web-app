@@ -4,7 +4,7 @@ import { FormikValues } from 'formik'
 import { useNavigate } from 'react-router-dom'
 
 import { useForm } from '../../../hooks'
-import { UseAuthProperties } from '../auth'
+import { UseAuthProperties } from '../interfaces'
 
 export const useAuth = <D extends FormikValues, T = {}>({
   url,

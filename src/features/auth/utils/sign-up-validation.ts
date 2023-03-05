@@ -1,8 +1,9 @@
 import { z, ZodError } from 'zod'
 
+import { SignUpFormEntries } from '../interfaces'
 import { getErrors } from './utils'
 
-export const signUpValidation = (values: SignUpFormValues) => {
+export const signUpValidation = (values: SignUpFormEntries) => {
   let errors: { [key: string]: string } = {}
 
   try {
