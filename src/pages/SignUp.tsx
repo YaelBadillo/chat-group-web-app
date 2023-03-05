@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import { Button, Form, Input, TextError } from '../components/form'
 import { Loading } from '../components/loading'
 import {
@@ -9,11 +7,12 @@ import {
   TextSuggestion,
   TextSuggestionLink,
   Title,
+  UseAuthProperties,
   signUpValidation,
 } from '../features/auth'
 import { useAuth } from '../features/auth'
 
-const signUpFormValues = {
+const signUpFormValues: UseAuthProperties<SignUpFormEntries> = {
   url: 'http://localhost:3000/auth/signup',
   to: '/auth/login',
   initialValues: {
@@ -21,6 +20,7 @@ const signUpFormValues = {
     password: '',
     passwordConfirm: '',
   },
+  validate: signUpValidation,
   initialTouched: {
     name: false,
     password: false,
@@ -29,18 +29,8 @@ const signUpFormValues = {
 }
 
 const SignUp = () => {
-  const { formik, value, status, error } = useAuth<SignUpFormEntries>({
-    url: signUpFormValues.url,
-    to: signUpFormValues.to,
-    initialValues: signUpFormValues.initialValues,
-    validate: signUpValidation,
-    initialTouched: signUpFormValues.initialTouched,
-  })
-
-  useEffect(() => {
-    console.log(formik.touched.name)
-    console.log(formik.errors.name)
-  }, [formik.touched])
+  const { formik, value, status, error } =
+    useAuth<SignUpFormEntries>(signUpFormValues)
 
   if (status === 'pending') return <Loading />
 

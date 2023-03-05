@@ -1,5 +1,6 @@
 import { z, ZodError } from 'zod'
 
+import { LogInFormEntries } from '../interfaces'
 import { getErrors } from './utils'
 
 export const logInValidation = (values: LogInFormEntries) => {
