@@ -35,7 +35,7 @@ const LogIn = () => {
 
   return (
     <div className="relative grid h-full w-full content-center bg-secondary">
-      <Alert />
+      <Alert message={error?.message} />
 
       <FormContainer>
         <Title>Welcome back</Title>

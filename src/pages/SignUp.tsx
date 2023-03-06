@@ -1,6 +1,7 @@
 import { Button, Form, Input, TextError } from '../components/form'
 import { Loading } from '../components/loading'
 import {
+  Alert,
   Description,
   FormContainer,
   SignUpFormEntries,
@@ -36,6 +37,8 @@ const SignUp = () => {
 
   return (
     <div className="grid h-full w-full content-center bg-secondary">
+      <Alert message={error?.message} />
+
       <FormContainer>
         <Title>Create your account</Title>
         <Description>Join thousands of people around the world</Description>

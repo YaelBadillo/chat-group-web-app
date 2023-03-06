@@ -1,27 +1,18 @@
 import { useState } from 'react'
 
-export const Alert = () => {
-  const [close, setClose] = useState(false)
+export const Alert = ({ message }: { message: string | undefined }) => {
+  const [hidden, setHidden] = useState<boolean>(message === null ? true : false)
 
-  const handleClose = () => {
-    setClose(close ? false : true)
-  }
+  const handleHidden = () => setHidden(!hidden)
+
+  if (hidden) return null
 
   return (
-    <div
-      className={`absolute left-0 right-0 mx-auto mt-3 flex w-3/4 content-between items-start gap-x-1 rounded-sm bg-red-400 p-1 text-sm text-white${
-        close ? ' hidden' : ''
-      }`}
-    >
-      <span>
-        Error: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde
-        dolore enim repudiandae non, explicabo temporibus a vero adipisci!
-        Quaerat ducimus sapiente perspiciatis obcaecati pariatur nemo
-        dignissimos aliquam adipisci nesciunt ea.
-      </span>
+    <div className="absolute left-0 right-0 mx-auto mt-3 flex w-3/4 items-start justify-between gap-x-1 rounded-sm bg-red-400 px-1 py-2 text-white">
+      <span className="text-sm">{`${message}`}</span>
 
       <button
-        onClick={handleClose}
+        onClick={handleHidden}
         className="flex rounded-sm hover:bg-red-500"
       >
         <span className="material-icons text-xl leading-none">close</span>
