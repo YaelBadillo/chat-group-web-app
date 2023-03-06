@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 export const Alert = ({ message }: { message: string | undefined }) => {
-  const [hidden, setHidden] = useState<boolean>(message === null ? true : false)
+  const [hidden, setHidden] = useState<boolean>(message === undefined ? true : false)
 
   const handleHidden = () => setHidden(!hidden)
 
