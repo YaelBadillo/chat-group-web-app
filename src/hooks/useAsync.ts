@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 
-// Hook
 export const useAsync = <T, E = string>(
   asyncFunction: () => Promise<T>,
   immediate = true
@@ -16,11 +15,11 @@ export const useAsync = <T, E = string>(
     setValue(null)
     setError(null)
     return asyncFunction()
-      .then((response: any) => {
+      .then((response: T) => {
         setValue(response)
         setStatus('success')
       })
-      .catch((error: any) => {
+      .catch((error: E) => {
         setError(error)
         setStatus('error')
       })
