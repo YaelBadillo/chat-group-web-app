@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
-import { ChannelBar } from '../components/channel-bar'
+
+import { Navigate, Route, Routes } from 'react-router-dom'
+
 import { useFetch } from '../hooks'
 
 const Dashboard = () => {
@@ -9,14 +11,27 @@ const Dashboard = () => {
     {},
     true
   )
+  const {
+    execute: executeTwo,
+    status: statusTwo,
+    value: valueTwo,
+    error: errorTwo,
+  } = useFetch('http://localhost:3000/channel', 'get', {}, true)
 
   useEffect(() => {
     execute()
+    executeTwo()
   }, [])
 
+  useEffect(() => {
+    if (status === 'success' && statusTwo === 'success') {
+      console.log(value)
+      console.log(valueTwo)
+    }
+  }, [status])
+
   return (
-    <div className="grid h-full w-full">
-      <ChannelBar />
+    <div className="grid h-full w-full bg-primary">
     </div>
   )
 }
