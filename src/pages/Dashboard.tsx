@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
 
-import { Navigate, Route, Routes } from 'react-router-dom'
-
 import { useFetch } from '../hooks'
 
 const Dashboard = () => {

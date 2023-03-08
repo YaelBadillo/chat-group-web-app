@@ -1,18 +1,29 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import { Dashboard, Home, LogIn, SignUp } from './pages'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="h-full w-full">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="auth/signup" element={<SignUp />} />
-          <Route path="auth/login" element={<LogIn />} />
-          <Route path="dashboard" element={<Dashboard />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route index element={<Home />} />
+
+        <Route path="auth">
+          <Route path="signup" element={<SignUp />} />
+          <Route path="login" element={<LogIn />} />
+        </Route>
+
+        <Route path="dashboard/*" element={<Dashboard />}>
+          <Route path="channel/:channelId">
+            <Route path="update" />
+            <Route path="delete" />
+          </Route>
+          <Route path="channel/search" />
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </BrowserRouter>
   )
 }
