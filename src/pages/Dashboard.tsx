@@ -1,6 +1,16 @@
 import { useEffect } from 'react'
 
 import { useFetch } from '../hooks'
+import { Form, Input } from '../components/form'
+import { DashboardContainer, Sidebar } from '../layouts'
+import {
+  ChannelCard,
+  ChannelsContainer,
+  ChannelsPlaceholder,
+  SearchChannelContainer,
+  UserCard,
+  UserCardPlaceholder,
+} from '../features/channels'
 
 const Dashboard = () => {
   const { execute, status, value, error } = useFetch(
@@ -17,8 +27,7 @@ const Dashboard = () => {
   } = useFetch('http://localhost:3000/channel', 'get', {}, true)
 
   useEffect(() => {
-    execute()
-    executeTwo()
+    Promise.all([execute(), executeTwo()])
   }, [])
 
   useEffect(() => {
@@ -29,8 +38,42 @@ const Dashboard = () => {
   }, [status])
 
   return (
-    <div className="grid h-full w-full bg-primary">
-    </div>
+    <DashboardContainer>
+      <Sidebar>
+        <SearchChannelContainer>
+          <Form handleSubmit={() => {}}>
+            <Input
+              type="text"
+              name="search"
+              placeholder="Search"
+              value=""
+              onChange={() => {}}
+              onBlur={() => {}}
+              startIcon="search"
+              error={false}
+            />
+          </Form>
+
+          <ChannelsContainer>
+            {status === 'success' && statusTwo === 'success' ? (
+              <>
+                <ChannelCard />
+                <ChannelCard />
+                <ChannelCard />
+              </>
+            ) : (
+              <ChannelsPlaceholder />
+            )}
+          </ChannelsContainer>
+        </SearchChannelContainer>
+
+        {status === 'success' && statusTwo === 'success' ? (
+          <UserCard name="Yael" />
+        ) : (
+          <UserCardPlaceholder />
+        )}
+      </Sidebar>
+    </DashboardContainer>
   )
 }
 

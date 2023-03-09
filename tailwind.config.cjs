@@ -19,6 +19,7 @@ module.exports = {
         'loading-400': 'loading 1s ease-in-out 0.4s infinite both',
         'loading-200': 'loading 1s ease-in-out 0.2s infinite both',
         'loading-000': 'loading 1s ease-in-out 0s infinite both',
+        'skeleton-loading': 'skeleton-loading 1s linear infinite alternate',
       },
 
       keyframes: {
@@ -31,6 +32,15 @@ module.exports = {
           },
           '100%': {
             transform: 'translateY(0)',
+          },
+        },
+        'skeleton-loading': {
+          '0%': {
+            'background-color': '#3C393F',
+          },
+
+          '100%': {
+            'background-color': '#454249',
           },
         },
       },
