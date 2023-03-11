@@ -1,18 +1,18 @@
 import { fetchData } from '../../../lib'
 import { ChannelResponse, UserInfo, UserResponse } from '../types'
 
-export const getUserInfo = () => {
+export const getUserInfo: () => Promise<UserInfo> = () => {
   const body = {}
   const withCredentials = true
   return Promise.all([
     fetchData<UserResponse>(
-      'http://localhost:5173/user',
+      'http://localhost:3000/user',
       'get',
       body,
       withCredentials
     ),
     fetchData<ChannelResponse[]>(
-      'http://localhost:5173/channel',
+      'http://localhost:3000/channel',
       'get',
       body,
       withCredentials

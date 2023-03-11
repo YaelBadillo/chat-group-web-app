@@ -13,6 +13,7 @@ module.exports = {
         'search-input': '#3C393F',
         'group-image': '#252329',
         'group-name': '#BDBDBD',
+        'channel-card-hover': '#2b242d',
       },
 
       animation: {

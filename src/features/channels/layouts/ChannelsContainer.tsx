@@ -7,5 +7,5 @@ interface ChannelsContainerProps {
 export const ChannelsContainer: FC<ChannelsContainerProps> = ({
   children,
 }: ChannelsContainerProps) => {
-  return <div className="flex h-full w-full flex-col gap-y-2">{children}</div>
+  return <div className="flex h-full w-full flex-col">{children}</div>
 }

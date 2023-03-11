@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 
-import { useFetch } from '../hooks'
 import { Form, Input } from '../components/form'
 import { DashboardContainer, Sidebar } from '../layouts'
 import {
@@ -10,29 +9,14 @@ import {
   SearchChannelContainer,
 } from '../features/channels'
 import { UserCard, UserCardPlaceholder } from '../features/user'
+import { useUser } from '../features/dashboard'
 
 const Dashboard = () => {
-  const { execute, status, value, error } = useFetch(
-    'http://localhost:3000/user',
-    'get',
-    {},
-    true
-  )
-  const {
-    execute: executeTwo,
-    status: statusTwo,
-    value: valueTwo,
-    error: errorTwo,
-  } = useFetch('http://localhost:3000/channel', 'get', {}, true)
+  const { status, value, error } = useUser()
 
   useEffect(() => {
-    Promise.all([execute(), executeTwo()])
-  }, [])
-
-  useEffect(() => {
-    if (status === 'success' && statusTwo === 'success') {
+    if (status === 'success') {
       console.log(value)
-      console.log(valueTwo)
     }
   }, [status])
 
@@ -54,20 +38,18 @@ const Dashboard = () => {
           </Form>
 
           <ChannelsContainer>
-            {status === 'success' && statusTwo === 'success' ? (
-              <>
-                <ChannelCard />
-                <ChannelCard />
-                <ChannelCard />
-              </>
+            {status === 'success' && value?.channels !== undefined ? (
+              value.channels.map(({ id, name }) => (
+                <ChannelCard name={name} key={id} />
+              ))
             ) : (
               <ChannelsPlaceholder />
             )}
           </ChannelsContainer>
         </SearchChannelContainer>
 
-        {status === 'success' && statusTwo === 'success' ? (
-          <UserCard name="Yael" />
+        {status === 'success' ? (
+          <UserCard name={value?.user !== undefined ? value.user.name : ''} />
         ) : (
           <UserCardPlaceholder />
         )}
