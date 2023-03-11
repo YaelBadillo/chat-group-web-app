@@ -8,7 +8,7 @@ export const LocationContainer: FC<LocationContainerProps> = ({
   children,
 }: LocationContainerProps) => {
   return (
-    <div className="flex items-center px-6 pb-4 pt-6 text-gray-light">
+    <div className="flex items-center px-6 pb-4 pt-6 text-gray-light shadow-line">
       {children}
     </div>
   )
