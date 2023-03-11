@@ -9,7 +9,12 @@ import {
   SearchChannelContainer,
 } from '../features/channels'
 import { UserCard, UserCardPlaceholder } from '../features/user'
-import { useUser } from '../features/dashboard'
+import {
+  Action,
+  Location,
+  LocationContainer,
+  useUser,
+} from '../features/dashboard'
 
 const Dashboard = () => {
   const { status, value, error } = useUser()
@@ -23,6 +28,10 @@ const Dashboard = () => {
   return (
     <DashboardContainer>
       <Sidebar>
+        <LocationContainer>
+          <Location location="Channels" />
+          <Action icon="add" handleClick={() => {}} />
+        </LocationContainer>
         <SearchChannelContainer>
           <Form handleSubmit={() => {}}>
             <Input

@@ -7,5 +7,7 @@ interface SearchChannelContainerProps {
 export const SearchChannelContainer: FC<SearchChannelContainerProps> = ({
   children,
 }: SearchChannelContainerProps) => {
-  return <div className="flex h-full flex-col gap-y-5 p-6">{children}</div>
+  return (
+    <div className="flex flex-grow flex-col gap-y-5 px-6 py-5">{children}</div>
+  )
 }
