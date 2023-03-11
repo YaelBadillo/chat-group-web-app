@@ -8,9 +8,8 @@ import {
   ChannelsContainer,
   ChannelsPlaceholder,
   SearchChannelContainer,
-  UserCard,
-  UserCardPlaceholder,
 } from '../features/channels'
+import { UserCard, UserCardPlaceholder } from '../features/user'
 
 const Dashboard = () => {
   const { execute, status, value, error } = useFetch(
