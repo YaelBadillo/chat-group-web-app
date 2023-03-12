@@ -13,12 +13,16 @@ const App = () => {
           <Route path="login" element={<LogIn />} />
         </Route>
 
-        <Route path="dashboard/*" element={<Dashboard />}>
+        <Route path="dashboard/*">
+          <Route index element={<Dashboard />} />
+
           <Route path="channel/:channelId">
             <Route path="update" />
             <Route path="delete" />
           </Route>
+
           <Route path="channel/search" />
+
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Route>
 

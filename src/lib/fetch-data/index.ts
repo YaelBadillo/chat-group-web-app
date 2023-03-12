@@ -1,2 +1,2 @@
 export * from './fetch-data'
-export * from './fetch-data.types'
+export * from './fetch-data'

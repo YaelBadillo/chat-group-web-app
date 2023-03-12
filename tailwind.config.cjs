@@ -13,12 +13,14 @@ module.exports = {
         'search-input': '#3C393F',
         'group-image': '#252329',
         'group-name': '#BDBDBD',
+        'channel-card-hover': '#2b242d',
       },
 
       animation: {
         'loading-400': 'loading 1s ease-in-out 0.4s infinite both',
         'loading-200': 'loading 1s ease-in-out 0.2s infinite both',
         'loading-000': 'loading 1s ease-in-out 0s infinite both',
+        'skeleton-loading': 'skeleton-loading 1s linear infinite alternate',
       },
 
       keyframes: {
@@ -33,6 +35,18 @@ module.exports = {
             transform: 'translateY(0)',
           },
         },
+        'skeleton-loading': {
+          '0%': {
+            'background-color': '#3C393F',
+          },
+
+          '100%': {
+            'background-color': '#454249',
+          },
+        },
+      },
+      boxShadow: {
+        line: '0px 4px 4px rgba(0, 0, 0, 0.25)',
       },
     },
   },

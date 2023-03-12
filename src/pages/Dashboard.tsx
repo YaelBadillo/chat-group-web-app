@@ -1,36 +1,69 @@
 import { useEffect } from 'react'
 
-import { useFetch } from '../hooks'
+import { Form, Input } from '../components/form'
+import { DashboardContainer, Sidebar } from '../layouts'
+import {
+  ChannelCard,
+  ChannelsContainer,
+  ChannelsPlaceholder,
+  SearchChannelContainer,
+} from '../features/channels'
+import { UserCard, UserCardPlaceholder } from '../features/user'
+import {
+  Action,
+  Location,
+  LocationContainer,
+  useUser,
+} from '../features/dashboard'
 
 const Dashboard = () => {
-  const { execute, status, value, error } = useFetch(
-    'http://localhost:3000/user',
-    'get',
-    {},
-    true
-  )
-  const {
-    execute: executeTwo,
-    status: statusTwo,
-    value: valueTwo,
-    error: errorTwo,
-  } = useFetch('http://localhost:3000/channel', 'get', {}, true)
+  const { status, value, error } = useUser()
 
   useEffect(() => {
-    execute()
-    executeTwo()
-  }, [])
-
-  useEffect(() => {
-    if (status === 'success' && statusTwo === 'success') {
+    if (status === 'success') {
       console.log(value)
-      console.log(valueTwo)
     }
   }, [status])
 
   return (
-    <div className="grid h-full w-full bg-primary">
-    </div>
+    <DashboardContainer>
+      <Sidebar>
+        <LocationContainer>
+          <Location location="Channels" />
+          <Action icon="add" handleClick={() => {}} />
+        </LocationContainer>
+        <SearchChannelContainer>
+          <Form handleSubmit={() => {}}>
+            <Input
+              type="text"
+              name="search"
+              placeholder="Search"
+              value=""
+              onChange={() => {}}
+              onBlur={() => {}}
+              startIcon="search"
+              error={false}
+            />
+          </Form>
+
+          <ChannelsContainer>
+            {status === 'success' && value?.channels !== undefined ? (
+              value.channels.map(({ id, name }) => (
+                <ChannelCard name={name} key={id} />
+              ))
+            ) : (
+              <ChannelsPlaceholder />
+            )}
+          </ChannelsContainer>
+        </SearchChannelContainer>
+
+        {status === 'success' ? (
+          <UserCard name={value?.user !== undefined ? value.user.name : ''} />
+        ) : (
+          <UserCardPlaceholder />
+        )}
+      </Sidebar>
+    </DashboardContainer>
   )
 }
 
