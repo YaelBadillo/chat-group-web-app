@@ -4,13 +4,21 @@ import { useUser } from './useUser'
 import { useSockets } from '../../socket'
 
 export const useDashboard = () => {
-  const { status: requestsStatus, value, error } = useUser()
-  const { areSocketsConnected } = useSockets()
-  const [status, setStatus] = useState(false)
+  const { status: requestsStatus, value: userInfo, error } = useUser()
+  const { connect, disconnect, areConnected } = useSockets()
+  const [status, setStatus] = useState<
+    'idle' | 'pending' | 'success' | 'error'
+  >('idle')
 
   useEffect(() => {
-    if (requestsStatus === 'success' && areSocketsConnected) setStatus(true)
-  }, [requestsStatus, areSocketsConnected])
+    connect()
+    return () => disconnect()
+  }, [])
 
-  return { value, status }
+  useEffect(() => {
+    if (areConnected && requestsStatus === 'success') setStatus('success')
+    else setStatus(requestsStatus)
+  }, [requestsStatus, areConnected])
+
+  return { status, userInfo }
 }

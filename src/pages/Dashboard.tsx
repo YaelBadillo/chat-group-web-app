@@ -17,7 +17,7 @@ import {
 } from '../features/dashboard'
 
 const Dashboard = () => {
-  const { value, status } = useDashboard()
+  const { status, userInfo } = useDashboard()
 
   return (
     <DashboardContainer>
@@ -41,8 +41,8 @@ const Dashboard = () => {
           </Form>
 
           <ChannelsContainer>
-            {status && value?.channels !== undefined ? (
-              value.channels.map(({ id, name }) => (
+            {status === 'success' && userInfo?.channels !== undefined ? (
+              userInfo.channels.map(({ id, name }) => (
                 <ChannelCard name={name} key={id} />
               ))
             ) : (
@@ -52,7 +52,9 @@ const Dashboard = () => {
         </SearchChannelContainer>
 
         {status ? (
-          <UserCard name={value?.user !== undefined ? value.user.name : ''} />
+          <UserCard
+            name={userInfo?.user !== undefined ? userInfo.user.name : ''}
+          />
         ) : (
           <UserCardPlaceholder />
         )}
