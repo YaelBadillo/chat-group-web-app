@@ -1,40 +1,27 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
-import { Socket } from 'socket.io-client'
+import { io } from 'socket.io-client'
+import { useSetEvents } from './useSetEvents'
 
 export const useSocket = (
-  socket: Socket,
+  url: string,
   socketEvents?: { event: string; callback: () => void }[]
 ) => {
+  const socket = io(url, { withCredentials: true, autoConnect: false })
   const [isConnected, setIsConnected] = useState(socket.connected)
-  const [events, _] = useState(socketEvents)
 
-  useEffect(() => {
-    const onConnect = () => {
-      setIsConnected(true)
-    }
-    const onDisconnect = () => {
-      setIsConnected(false)
-    }
+  const connect = useCallback(() => socket.connect(), [])
+  const disconnect = useCallback(() => socket.disconnect(), [])
 
-    socket.on('connect', onConnect)
-    socket.on('disconnect', onDisconnect)
-    if (events) {
-      events.forEach(({ event, callback }) => {
-        socket.on(event, callback)
-      })
-    }
+  const onConnect = useCallback(() => setIsConnected(true), [])
+  const onDisconnect = useCallback(() => setIsConnected(false), [])
 
-    return () => {
-      socket.off('connect', onConnect)
-      socket.off('disconnect', onDisconnect)
-      if (events) {
-        events.forEach(({ event, callback }) => {
-          socket.off(event, callback)
-        })
-      }
-    }
-  }, [events])
+  const { areAllEventsConfigured } = useSetEvents(
+    socket,
+    onConnect,
+    onDisconnect,
+    socketEvents
+  )
 
-  return { isConnected, connect: socket.connect, disconnect: socket.disconnect }
+  return { isConnected, connect, disconnect, areAllEventsConfigured }
 }

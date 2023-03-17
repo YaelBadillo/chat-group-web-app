@@ -10,7 +10,16 @@ const NAMESPACES = {
 }
 
 export const sockets: ChatGroupSockets = {
-  channel: io(`${URL}${NAMESPACES.channel}`),
-  member: io(`${URL}${NAMESPACES.member}`),
-  message: io(`${URL}${NAMESPACES.message}`),
+  channel: io(`${URL}${NAMESPACES.channel}`, {
+    withCredentials: true,
+    autoConnect: false,
+  }),
+  member: io(`${URL}${NAMESPACES.member}`, {
+    withCredentials: true,
+    autoConnect: false,
+  }),
+  message: io(`${URL}${NAMESPACES.message}`, {
+    withCredentials: true,
+    autoConnect: false,
+  }),
 }

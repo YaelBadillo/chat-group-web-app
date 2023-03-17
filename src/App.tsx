@@ -13,9 +13,7 @@ const App = () => {
           <Route path="login" element={<LogIn />} />
         </Route>
 
-        <Route path="dashboard/*">
-          <Route index element={<Dashboard />} />
-
+        <Route path="dashboard/*" element={<Dashboard />}>
           <Route path="channel/:channelId">
             <Route path="update" />
             <Route path="delete" />

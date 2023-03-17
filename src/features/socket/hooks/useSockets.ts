@@ -1,42 +1,37 @@
 import { useState, useEffect } from 'react'
 
-import { sockets } from '../sockets'
 import { useSocket } from './useSocket'
 
 export const useSockets = () => {
-  const {
-    isConnected: isChannelConnected,
-    connect: connectChannel,
-    disconnect: disconnectChannel,
-  } = useSocket(sockets.channel)
-  const {
-    isConnected: isMemberConnected,
-    connect: connectMember,
-    disconnect: disconnectMember,
-  } = useSocket(sockets.member)
-  const {
-    isConnected: isMessageConnected,
-    connect: connectMessage,
-    disconnect: disconnectMessage,
-  } = useSocket(sockets.message)
+  const channelSocket = useSocket('http://localhost:3000/channel')
+  const memberSocket = useSocket('http://localhost:3000/member')
+  const messageSocket = useSocket('http://localhost:3000/message')
 
-  /* 
-  const [areConnected, setAreConnected] = useState(
-    isChannelConnected && isMemberConnected && isMessageConnected
-  )
-  */
+  const [areSocketsConnected, setAreSocketsConnected] = useState(false)
 
   useEffect(() => {
-    connectChannel()
-    connectMember()
-    connectMessage()
+    const areConnected =
+      channelSocket.isConnected &&
+      memberSocket.isConnected &&
+      messageSocket.isConnected
+    if (areConnected) setAreSocketsConnected(true)
+  }, [
+    channelSocket.isConnected,
+    memberSocket.isConnected,
+    messageSocket.isConnected,
+  ])
+
+  useEffect(() => {
+    channelSocket.connect()
+    memberSocket.connect()
+    messageSocket.connect()
 
     return () => {
-      disconnectChannel()
-      disconnectMember()
-      disconnectMessage()
+      channelSocket.disconnect()
+      memberSocket.disconnect()
+      messageSocket.disconnect()
     }
   }, [])
 
-  return { isChannelConnected, isMemberConnected, isMessageConnected }
+  return { areSocketsConnected }
 }
