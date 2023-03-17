@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Outlet } from 'react-router'
 
 import { Form, Input } from '../components/form'
 import { DashboardContainer, Sidebar } from '../layouts'
@@ -59,6 +59,8 @@ const Dashboard = () => {
           <UserCardPlaceholder />
         )}
       </Sidebar>
+
+      <Outlet />
     </DashboardContainer>
   )
 }
