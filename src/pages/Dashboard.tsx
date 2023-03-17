@@ -13,17 +13,11 @@ import {
   Action,
   Location,
   LocationContainer,
-  useUser,
+  useDashboard,
 } from '../features/dashboard'
 
 const Dashboard = () => {
-  const { status, value, error } = useUser()
-
-  useEffect(() => {
-    if (status === 'success') {
-      console.log(value)
-    }
-  }, [status])
+  const { status, userInfo } = useDashboard()
 
   return (
     <DashboardContainer>
@@ -47,8 +41,8 @@ const Dashboard = () => {
           </Form>
 
           <ChannelsContainer>
-            {status === 'success' && value?.channels !== undefined ? (
-              value.channels.map(({ id, name }) => (
+            {status === 'success' && userInfo?.channels !== undefined ? (
+              userInfo.channels.map(({ id, name }) => (
                 <ChannelCard name={name} key={id} />
               ))
             ) : (
@@ -57,8 +51,10 @@ const Dashboard = () => {
           </ChannelsContainer>
         </SearchChannelContainer>
 
-        {status === 'success' ? (
-          <UserCard name={value?.user !== undefined ? value.user.name : ''} />
+        {status ? (
+          <UserCard
+            name={userInfo?.user !== undefined ? userInfo.user.name : ''}
+          />
         ) : (
           <UserCardPlaceholder />
         )}
