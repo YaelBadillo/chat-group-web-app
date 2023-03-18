@@ -1,1 +1,1 @@
-export * from './ChannelContainer'
+export * from './ChannelChatContainer'

@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
-import { Dashboard, Home, LogIn, SignUp } from './pages'
-import { ChannelContainer } from './features/channel'
+import { Dashboard, Home, LogIn, SignUp, ChannelChat } from './pages'
 
 const App = () => {
   return (
@@ -15,7 +14,7 @@ const App = () => {
         </Route>
 
         <Route path="dashboard/*" element={<Dashboard />}>
-          <Route path="channel/:channelId" element={<ChannelContainer />}>
+          <Route path="channel/:channelId" element={<ChannelChat />}>
             <Route path="update" />
             <Route path="delete" />
           </Route>
