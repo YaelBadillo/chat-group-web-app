@@ -7,7 +7,7 @@ import {
   ChannelsContainer,
   ChannelsPlaceholder,
   SearchChannelContainer,
-} from '../features/channel-list'
+} from '../features/channel'
 import { UserCard, UserCardPlaceholder } from '../features/user'
 import {
   Action,
