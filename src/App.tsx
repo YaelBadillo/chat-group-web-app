@@ -6,7 +6,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Home />} />
+        <Route path="/" element={<Home />} />
 
         <Route path="auth">
           <Route path="signup" element={<SignUp />} />
@@ -14,7 +14,10 @@ const App = () => {
         </Route>
 
         <Route path="dashboard/*" element={<Dashboard />}>
+          <Route index element={<></>} />
+
           <Route path="channel/:channelId" element={<ChannelChat />}>
+            <Route index element={<></>} />
             <Route path="update" />
             <Route path="delete" />
           </Route>
