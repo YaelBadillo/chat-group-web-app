@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 
-import { useUser } from './useUser'
-import { useSockets } from '../../socket'
+import { useUserAndChannels } from './useUserAndChannels'
+import { useSockets } from '../features/socket'
 
 export const useDashboard = () => {
-  const { status: requestsStatus, value: userInfo, error } = useUser()
+  const {
+    status: requestsStatus,
+    value: userAndChannels,
+    error,
+  } = useUserAndChannels()
   const { connect, disconnect, areConnected } = useSockets()
   const [status, setStatus] = useState<
     'idle' | 'pending' | 'success' | 'error'
@@ -20,5 +24,9 @@ export const useDashboard = () => {
     else setStatus(requestsStatus)
   }, [requestsStatus, areConnected])
 
-  return { status, userInfo }
+  return {
+    status,
+    user: userAndChannels?.user,
+    channels: userAndChannels?.channels,
+  }
 }

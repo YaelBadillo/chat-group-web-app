@@ -1,13 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
-import { Dashboard, Home, LogIn, SignUp } from './pages'
-import { ChannelContainer } from './features/channel'
+import { Dashboard, Home, LogIn, SignUp, ChannelChat } from './pages'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Home />} />
+        <Route path="/" element={<Home />} />
 
         <Route path="auth">
           <Route path="signup" element={<SignUp />} />
@@ -15,15 +14,23 @@ const App = () => {
         </Route>
 
         <Route path="dashboard/*" element={<Dashboard />}>
-          <Route path="channel/:channelId" element={<ChannelContainer />}>
-            <Route path="update" />
-            <Route path="delete" />
+          <Route index element={<h1 className="text-white">Hola</h1>} />
+
+          <Route path="channel/:channelId">
+            <Route index element={<ChannelChat />} />
+            <Route
+              path="update"
+              element={<h1 className="text-white">Update</h1>}
+            />
+            <Route
+              path="delete"
+              element={<h1 className="text-white">Delete</h1>}
+            />
           </Route>
-
-          <Route path="channel/search" />
-
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Route>
+
+        <Route path="channel/search" />
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

@@ -7,17 +7,13 @@ import {
   ChannelsContainer,
   ChannelsPlaceholder,
   SearchChannelContainer,
-} from '../features/channel-list'
+} from '../features/channel'
 import { UserCard, UserCardPlaceholder } from '../features/user'
-import {
-  Action,
-  Location,
-  LocationContainer,
-  useDashboard,
-} from '../features/dashboard'
+import { Action, Location, LocationContainer } from '../features/dashboard'
+import { useDashboard } from '../hooks'
 
 const Dashboard = () => {
-  const { status, userInfo } = useDashboard()
+  const { status, user, channels } = useDashboard()
 
   return (
     <DashboardContainer>
@@ -41,8 +37,10 @@ const Dashboard = () => {
           </Form>
 
           <ChannelsContainer>
-            {status === 'success' && userInfo?.channels !== undefined ? (
-              userInfo.channels.map(({ id, name }) => (
+            {status === 'success' &&
+            channels !== undefined &&
+            channels !== null ? (
+              channels.map(({ id, name }) => (
                 <ChannelCard name={name} key={id} />
               ))
             ) : (
@@ -53,7 +51,7 @@ const Dashboard = () => {
 
         {status ? (
           <UserCard
-            name={userInfo?.user !== undefined ? userInfo.user.name : ''}
+            name={user !== undefined && user !== null ? user.name : ''}
           />
         ) : (
           <UserCardPlaceholder />
