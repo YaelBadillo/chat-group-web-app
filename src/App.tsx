@@ -14,18 +14,23 @@ const App = () => {
         </Route>
 
         <Route path="dashboard/*" element={<Dashboard />}>
-          <Route index element={<></>} />
+          <Route index element={<h1 className="text-white">Hola</h1>} />
 
-          <Route path="channel/:channelId" element={<ChannelChat />}>
-            <Route index element={<></>} />
-            <Route path="update" />
-            <Route path="delete" />
+          <Route path="channel/:channelId">
+            <Route index element={<ChannelChat />} />
+            <Route
+              path="update"
+              element={<h1 className="text-white">Update</h1>}
+            />
+            <Route
+              path="delete"
+              element={<h1 className="text-white">Delete</h1>}
+            />
           </Route>
-
-          <Route path="channel/search" />
-
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Route>
+
+        <Route path="channel/search" />
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
