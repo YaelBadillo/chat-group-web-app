@@ -9,12 +9,15 @@ interface InputProps {
   required?: boolean
   onChange: ChangeEventHandler<HTMLInputElement>
   onBlur: FocusEventHandler<HTMLInputElement>
-  startIcon: string
+  startIcon?: string
   error: boolean
 }
 
 const defaultProps: Partial<InputProps> = {
   autoComplete: 'off',
+  required: false,
+  startIcon: '',
+  error: false,
 }
 
 export const Input: FC<InputProps> = ({
@@ -27,7 +30,7 @@ export const Input: FC<InputProps> = ({
   onChange,
   onBlur,
   startIcon,
-  error = false,
+  error,
 }) => {
   return (
     <label
@@ -46,9 +49,11 @@ export const Input: FC<InputProps> = ({
         onBlur={onBlur}
         className="peer h-7 max-w-max bg-transparent text-gray-light outline-none"
       />
-      <span className="material-icons text-xl text-gray-light peer-focus:hidden peer-[&:not(:placeholder-shown)]:hidden">
-        {startIcon}
-      </span>
+      {startIcon ? (
+        <span className="material-icons text-xl text-gray-light peer-focus:hidden peer-[&:not(:placeholder-shown)]:hidden">
+          {startIcon}
+        </span>
+      ) : null}
     </label>
   )
 }
