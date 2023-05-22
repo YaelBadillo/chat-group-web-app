@@ -10,7 +10,7 @@ interface TextSuggestionLinkProps {
 export const TextSuggestionLink: FC<TextSuggestionLinkProps> = ({
   to,
   children,
-}: TextSuggestionLinkProps) => {
+}) => {
   return (
     <span className="cursor-pointer text-button-primary hover:text-white">
       <Link to={to}>{children}</Link>
