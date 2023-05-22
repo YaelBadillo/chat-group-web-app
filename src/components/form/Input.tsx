@@ -7,10 +7,10 @@ interface InputProps {
   autoComplete?: 'off' | 'on'
   value: string
   required?: boolean
-  onChange: ChangeEventHandler<HTMLInputElement>
-  onBlur: FocusEventHandler<HTMLInputElement>
+  onChange?: ChangeEventHandler<HTMLInputElement>
+  onBlur?: FocusEventHandler<HTMLInputElement>
   startIcon?: string
-  error: boolean
+  error?: boolean
 }
 
 const defaultProps: Partial<InputProps> = {
