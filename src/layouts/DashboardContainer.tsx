@@ -6,6 +6,6 @@ interface DashboardContainerProps {
 
 export const DashboardContainer: FC<DashboardContainerProps> = ({
   children,
-}: DashboardContainerProps) => {
+}) => {
   return <div className="flex h-full w-full bg-primary">{children}</div>
 }
