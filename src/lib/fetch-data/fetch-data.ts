@@ -9,7 +9,7 @@ export const fetchData = async <T, D = {}>(
   withCredentials: boolean
 ): Promise<T | void> => {
   try {
-    const response: AxiosResponse<T> = await axios<T, AxiosResponse<T, D>, D>(
+    const response = await axios<T, AxiosResponse<T, D>, D>(
       url,
       {
         data: body,
@@ -20,7 +20,7 @@ export const fetchData = async <T, D = {}>(
 
     return response.data
   } catch (error: unknown) {
-    if (error instanceof AxiosError<ErrorResponse>) handleErrors(error)
+    if (error instanceof AxiosError) handleErrors(error)
   }
 }
 
