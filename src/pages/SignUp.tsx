@@ -30,8 +30,7 @@ const signUpFormValues: UseAuthProperties<SignUpFormEntries> = {
 }
 
 const SignUp = () => {
-  const { formik, status, error } =
-    useAuth<SignUpFormEntries>(signUpFormValues)
+  const { formik, status, error } = useAuth<SignUpFormEntries>(signUpFormValues)
 
   if (status === 'pending') return <Loading />
 

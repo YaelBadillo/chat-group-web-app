@@ -9,7 +9,7 @@ interface UserResponse {
   updatedAt: string
 }
 
-export const getUser: () => Promise<UserResponse | void> = () => {
+export const getUser = () => {
   const body = {}
   const withCredentials = true
   return fetchData<UserResponse>(

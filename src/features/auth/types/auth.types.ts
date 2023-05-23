@@ -10,3 +10,14 @@ export interface UseAuthProperties<D> {
     | undefined
   initialTouched?: FormikTouched<D> | undefined
 }
+
+export interface SignUpFormEntries {
+  name: string
+  password: string
+  passwordConfirm: string
+}
+
+export interface LogInFormEntries {
+  name: string
+  password: string
+}

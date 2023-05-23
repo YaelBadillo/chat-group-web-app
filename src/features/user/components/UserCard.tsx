@@ -6,7 +6,7 @@ interface UserCardProps {
   name: string
 }
 
-export const UserCard: FC<UserCardProps> = ({ name }: UserCardProps) => {
+export const UserCard: FC<UserCardProps> = ({ name }) => {
   return (
     <div className="flex flex-row items-center gap-x-5 px-7 py-4">
       <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-md">

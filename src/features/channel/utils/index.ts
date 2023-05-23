@@ -1,1 +1,1 @@
-export * from './get-acronym'
+export * from './getAcronym'

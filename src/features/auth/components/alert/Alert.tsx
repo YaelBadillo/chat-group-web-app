@@ -1,7 +1,13 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 
-export const Alert = ({ message }: { message: string | undefined }) => {
-  const [hidden, setHidden] = useState<boolean>(message === undefined ? true : false)
+interface AlertProps {
+  message?: string
+}
+
+export const Alert: FC<AlertProps> = ({ message }) => {
+  const [hidden, setHidden] = useState<boolean>(
+    message === undefined ? true : false
+  )
 
   const handleHidden = () => setHidden(!hidden)
 

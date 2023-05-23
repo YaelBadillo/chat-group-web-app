@@ -10,7 +10,7 @@ export const useFetch = <T, D = {}>(
   body: D,
   withCredentials: boolean = false
 ) => {
-  const immediate: boolean = false
+  const immediate = false
   return useAsync<T | void, Error>(
     () => fetchData<T, D>(url, method, body, withCredentials),
     immediate
