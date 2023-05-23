@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
-import { Method, ErrorResponse } from './fetch-data.types'
+import { Method, ErrorResponse } from './fetchData.types'
 
 export const fetchData = async <T, D = {}>(
   url: string,

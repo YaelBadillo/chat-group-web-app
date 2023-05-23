@@ -1,2 +1,2 @@
-export * from './sign-up-validation'
-export * from './log-in-validation'
+export * from './signUpValidation'
+export * from './logInValidation'
