@@ -1,6 +1,6 @@
 import { z, ZodError } from 'zod'
 
-import { SignUpFormEntries } from '../interfaces'
+import { SignUpFormEntries } from '../types'
 import { getErrors } from './utils'
 
 export const signUpValidation = (values: SignUpFormEntries) => {
