@@ -5,9 +5,7 @@ interface ChannelCardProps {
   name: string
 }
 
-export const ChannelCard: FC<ChannelCardProps> = ({
-  name,
-}: ChannelCardProps) => {
+export const ChannelCard: FC<ChannelCardProps> = ({ name }) => {
   const nameAcronym = useMemo(() => getAcronym(name), [name])
   return (
     <div className="flex h-max w-full cursor-pointer items-center gap-x-3 rounded-lg p-1 hover:bg-channel-card-hover">
