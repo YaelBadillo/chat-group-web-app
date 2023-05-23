@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 interface LocationContainerProps {
-  children: JSX.Element | JSX.Element[] | null
+  children?: JSX.Element | JSX.Element[]
 }
 
 export const LocationContainer: FC<LocationContainerProps> = ({ children }) => {

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 interface SearchChannelContainerProps {
-  children: JSX.Element | JSX.Element[] | null
+  children?: JSX.Element | JSX.Element[]
 }
 
 export const SearchChannelContainer: FC<SearchChannelContainerProps> = ({

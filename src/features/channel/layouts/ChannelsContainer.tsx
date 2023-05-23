@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 interface ChannelsContainerProps {
-  children: JSX.Element | JSX.Element[] | null
+  children?: JSX.Element | JSX.Element[]
 }
 
 export const ChannelsContainer: FC<ChannelsContainerProps> = ({ children }) => {

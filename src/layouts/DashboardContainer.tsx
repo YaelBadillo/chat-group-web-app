@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 interface DashboardContainerProps {
-  children: JSX.Element | JSX.Element[] | null
+  children?: JSX.Element | JSX.Element[]
 }
 
 export const DashboardContainer: FC<DashboardContainerProps> = ({

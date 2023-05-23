@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 interface ChannelChatContainerProps {
-  children: JSX.Element | JSX.Element[] | null
+  children?: JSX.Element | JSX.Element[]
 }
 
 export const ChannelChatContainer: FC<ChannelChatContainerProps> = ({

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 interface SidebarProps {
-  children: JSX.Element | JSX.Element[] | null
+  children?: JSX.Element | JSX.Element[]
 }
 
 export const Sidebar: FC<SidebarProps> = ({ children }: SidebarProps) => {
