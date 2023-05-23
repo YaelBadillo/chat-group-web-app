@@ -40,8 +40,8 @@ const Dashboard = () => {
             {status === 'success' &&
             channels !== undefined &&
             channels !== null ? (
-              channels.map(({ id, name }) => (
-                <ChannelCard name={name} key={id} />
+              channels.map(({ id, name  }) => (
+                <ChannelCard name={name} id={id} key={id} />
               ))
             ) : (
               <ChannelsPlaceholder />
