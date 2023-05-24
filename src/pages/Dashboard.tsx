@@ -9,7 +9,7 @@ import {
   SearchChannelContainer,
 } from '../features/channel'
 import { UserCard, UserCardPlaceholder } from '../features/user'
-import { Action, Location, LocationContainer } from '../features/dashboard'
+import { Action, Location, LocationContainer, DashboardContext } from '../features/dashboard'
 import { useDashboard } from '../hooks'
 
 const Dashboard = () => {
@@ -58,7 +58,9 @@ const Dashboard = () => {
         )}
       </Sidebar>
 
-      <Outlet />
+      <DashboardContext.Provider value={{ user, channels }}>
+        <Outlet />
+      </DashboardContext.Provider>
     </DashboardContainer>
   )
 }
