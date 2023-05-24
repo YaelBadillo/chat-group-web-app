@@ -7,13 +7,13 @@ export const useAsync = <T, E = string>(
   const [status, setStatus] = useState<
     'idle' | 'pending' | 'success' | 'error'
   >('idle')
-  const [value, setValue] = useState<T | null>(null)
-  const [error, setError] = useState<E | null>(null)
+  const [value, setValue] = useState<T | undefined>(undefined)
+  const [error, setError] = useState<E | undefined>(undefined)
 
   const execute = useCallback(() => {
     setStatus('pending')
-    setValue(null)
-    setError(null)
+    setValue(undefined)
+    setError(undefined)
     return asyncFunction()
       .then((response: T) => {
         setValue(response)
