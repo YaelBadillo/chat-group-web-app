@@ -1,13 +1,5 @@
 import { fetchData } from '../../../lib'
-
-interface UserResponse {
-  id: string
-  name: string
-  state?: any
-  profilePictureKey?: any
-  createdAt: string
-  updatedAt: string
-}
+import { UserResponse } from '../types'
 
 export const getUser = () => {
   const body = {}
