@@ -28,7 +28,7 @@ const logInFormValues: UseAuthProperties<LogInFormEntries> = {
   },
 }
 
-const LogIn = () => {
+export const LogIn = () => {
   const { formik, status, error } = useAuth<LogInFormEntries>(logInFormValues)
 
   if (status === 'pending') return <Loading />
@@ -87,5 +87,3 @@ const LogIn = () => {
     </div>
   )
 }
-
-export default LogIn

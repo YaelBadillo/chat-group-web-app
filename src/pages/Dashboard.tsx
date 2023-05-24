@@ -9,10 +9,15 @@ import {
   SearchChannelContainer,
 } from '../features/channel'
 import { UserCard, UserCardPlaceholder } from '../features/user'
-import { Action, Location, LocationContainer, DashboardContext } from '../features/dashboard'
+import {
+  Action,
+  Location,
+  LocationContainer,
+  DashboardContext,
+} from '../features/dashboard'
 import { useDashboard } from '../hooks'
 
-const Dashboard = () => {
+export const Dashboard = () => {
   const { status, user, channels } = useDashboard()
 
   return (
@@ -40,7 +45,7 @@ const Dashboard = () => {
             {status === 'success' &&
             channels !== undefined &&
             channels !== null ? (
-              channels.map(({ id, name  }) => (
+              channels.map(({ id, name }) => (
                 <ChannelCard name={name} id={id} key={id} />
               ))
             ) : (
@@ -58,11 +63,9 @@ const Dashboard = () => {
         )}
       </Sidebar>
 
-      <DashboardContext.Provider value={{ user, channels }}>
+      <DashboardContext.Provider value={{ status, user, channels }}>
         <Outlet />
       </DashboardContext.Provider>
     </DashboardContainer>
   )
 }
-
-export default Dashboard

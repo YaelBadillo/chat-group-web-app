@@ -29,7 +29,7 @@ const signUpFormValues: UseAuthProperties<SignUpFormEntries> = {
   },
 }
 
-const SignUp = () => {
+export const SignUp = () => {
   const { formik, status, error } = useAuth<SignUpFormEntries>(signUpFormValues)
 
   if (status === 'pending') return <Loading />
@@ -108,5 +108,3 @@ const SignUp = () => {
     </div>
   )
 }
-
-export default SignUp
