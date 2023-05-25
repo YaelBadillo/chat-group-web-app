@@ -1,15 +1,16 @@
 import { useContext, useEffect } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import { ChannelChatContainer } from '../features/channel'
 import { DashboardContext } from '../features/dashboard'
 
 export const ChannelChat = () => {
   const { channelId } = useParams()
+  const location = useLocation()
   const dashboard = useContext(DashboardContext)
 
-  useEffect(() => console.log(dashboard), [])
+  useEffect(() => console.log(location), [])
   return (
     <ChannelChatContainer>
       <div className="py-5 px-16 shadow-line">

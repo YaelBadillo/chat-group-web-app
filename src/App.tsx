@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
-import { Dashboard, Home, LogIn, SignUp, ChannelChat } from './pages'
+import { Dashboard, Home, LogIn, SignUp, ChannelChat, Channels } from './pages'
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
         </Route>
 
         <Route path="dashboard/*" element={<Dashboard />}>
-          <Route index element={<h1 className="text-white">Hola</h1>} />
+          <Route index element={<Channels />} />
 
           <Route path="channel/:channelId">
             <Route index element={<ChannelChat />} />

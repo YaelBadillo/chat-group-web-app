@@ -1,68 +1,23 @@
-import { Outlet } from 'react-router'
+import { useMatch, Outlet } from 'react-router'
 
-import { Form, Input } from '../components/form'
-import { DashboardContainer, Sidebar } from '../layouts'
-import {
-  ChannelCard,
-  ChannelsContainer,
-  ChannelsPlaceholder,
-  SearchChannelContainer,
-} from '../features/channel'
-import { UserCard, UserCardPlaceholder } from '../features/user'
+import { DashboardContainer, Navbar } from '../layouts'
 import {
   Action,
+  DashboardContext,
   Location,
   LocationContainer,
-  DashboardContext,
 } from '../features/dashboard'
 import { useDashboard } from '../hooks'
+import { useEffect } from 'react'
 
 export const Dashboard = () => {
   const { status, user, channels } = useDashboard()
+  const match = useMatch('channel/')
+
+  useEffect(() => console.log(match), [match])
 
   return (
     <DashboardContainer>
-      <Sidebar>
-        <LocationContainer>
-          <Location location="Channels" />
-          <Action icon="add" handleClick={() => {}} />
-        </LocationContainer>
-        <SearchChannelContainer>
-          <Form handleSubmit={() => {}}>
-            <Input
-              type="text"
-              name="search"
-              placeholder="Search"
-              value=""
-              onChange={() => {}}
-              onBlur={() => {}}
-              startIcon="search"
-              error={false}
-            />
-          </Form>
-
-          <ChannelsContainer>
-            {status === 'success' &&
-            channels !== undefined &&
-            channels !== null ? (
-              channels.map(({ id, name }) => (
-                <ChannelCard name={name} id={id} key={id} />
-              ))
-            ) : (
-              <ChannelsPlaceholder />
-            )}
-          </ChannelsContainer>
-        </SearchChannelContainer>
-
-        {status ? (
-          <UserCard
-            name={user !== undefined && user !== null ? user.name : ''}
-          />
-        ) : (
-          <UserCardPlaceholder />
-        )}
-      </Sidebar>
-
       <DashboardContext.Provider value={{ status, user, channels }}>
         <Outlet />
       </DashboardContext.Provider>
