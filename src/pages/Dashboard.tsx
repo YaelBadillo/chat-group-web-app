@@ -1,12 +1,7 @@
 import { useMatch, Outlet } from 'react-router'
 
-import { DashboardContainer, Navbar } from '../layouts'
-import {
-  Action,
-  DashboardContext,
-  Location,
-  LocationContainer,
-} from '../features/dashboard'
+import { DashboardContainer } from '../layouts'
+import { DashboardContext } from '../features/dashboard'
 import { useDashboard } from '../hooks'
 import { useEffect } from 'react'
 

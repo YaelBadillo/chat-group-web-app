@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { Navbar, Sidebar, MainContentContainer } from '../layouts'
+import { Navbar, Sidebar, MainContentContainer } from '../features/dashboard'
 import {
   DashboardContext,
   Action,
