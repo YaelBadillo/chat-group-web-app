@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-interface SearchChannelContainerProps {
+interface SidebarMainContentProps {
   children?: JSX.Element | JSX.Element[]
 }
 
-export const SearchChannelContainer: FC<SearchChannelContainerProps> = ({
+export const SidebarMainContentProps: FC<SidebarMainContentProps> = ({
   children,
 }) => {
   return (

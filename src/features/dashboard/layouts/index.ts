@@ -1,4 +1,5 @@
 export * from './Navbar'
 export * from './MainContentContainer'
 export * from './Sidebar'
-export * from './LocationContainer'
+export * from './NavbarActionSection'
+export * from './SidebarMainContent'

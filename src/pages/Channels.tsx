@@ -1,17 +1,21 @@
 import { useContext } from 'react'
 
-import { Navbar, Sidebar, MainContentContainer } from '../features/dashboard'
+import {
+  Navbar,
+  Sidebar,
+  MainContentContainer,
+  SidebarMainContentProps,
+} from '../features/dashboard'
 import {
   DashboardContext,
   Action,
   Location,
-  LocationContainer,
+  NavbarActionSection
 } from '../features/dashboard'
 import {
   ChannelsContainer,
   ChannelCard,
   ChannelsPlaceholder,
-  SearchChannelContainer,
 } from '../features/channel'
 import { Form, Input } from '../components/form'
 import { UserCard, UserCardPlaceholder } from '../features/user'
@@ -22,15 +26,15 @@ export const Channels = () => {
   return (
     <>
       <Navbar>
-        <LocationContainer>
+        <NavbarActionSection>
           <Location location="Channels" />
           <Action icon="add" handleClick={() => {}} />
-        </LocationContainer>
+        </NavbarActionSection>
       </Navbar>
 
       <MainContentContainer>
         <Sidebar>
-          <SearchChannelContainer>
+          <SidebarMainContentProps>
             <Form handleSubmit={() => {}}>
               <Input
                 type="text"
@@ -55,7 +59,7 @@ export const Channels = () => {
                 <ChannelsPlaceholder />
               )}
             </ChannelsContainer>
-          </SearchChannelContainer>
+          </SidebarMainContentProps>
 
           {status ? (
             <UserCard

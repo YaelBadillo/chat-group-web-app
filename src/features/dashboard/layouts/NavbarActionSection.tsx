@@ -1,10 +1,12 @@
 import { FC } from 'react'
 
-interface LocationContainerProps {
+interface NavbarActionSectionProps {
   children?: JSX.Element | JSX.Element[]
 }
 
-export const LocationContainer: FC<LocationContainerProps> = ({ children }) => {
+export const NavbarActionSection: FC<NavbarActionSectionProps> = ({
+  children,
+}) => {
   return (
     <div className="flex w-3/12 items-center bg-secondary px-6 pb-4 pt-6 text-gray-light">
       {children}
