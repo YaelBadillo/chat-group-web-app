@@ -1,2 +1,2 @@
-export * from './Location'
+export * from './ActionName'
 export * from './Action'

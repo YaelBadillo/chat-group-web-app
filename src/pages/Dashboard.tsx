@@ -3,8 +3,8 @@ import { useMatch, Outlet } from 'react-router'
 import { DashboardContainer } from '../layouts'
 import {
   Action,
+  ActionName,
   DashboardContext,
-  Location,
   MainContentContainer,
   Navbar,
   NavbarActionSection,
@@ -33,11 +33,14 @@ export const Dashboard = () => {
         <NavbarActionSection>
           {match === null ? (
             <>
-              <Location location="Channels" />
+              <ActionName name="Channels" />
               <Action icon="add" handleClick={() => {}} />
             </>
           ) : (
-            <h1>hola</h1>
+            <>
+              <Action icon="arrow_back" handleClick={() => {}} />
+              <ActionName name="All channels" />
+            </>
           )}
         </NavbarActionSection>
       </Navbar>
