@@ -9,6 +9,7 @@ import {
   Navbar,
   NavbarActionSection,
   Sidebar,
+  SidebarCards,
   SidebarMainContentProps,
 } from '../features/dashboard'
 import { useDashboard } from '../hooks'
@@ -16,7 +17,9 @@ import { useEffect } from 'react'
 import { Form, Input } from '../components/form'
 import {
   ChannelCard,
-  ChannelsContainer,
+  ChannelDescription,
+  ChannelInfo,
+  ChannelName,
   ChannelsPlaceholder,
 } from '../features/channel'
 import { UserCard, UserCardPlaceholder } from '../features/user'
@@ -63,7 +66,7 @@ export const Dashboard = () => {
                   />
                 </Form>
 
-                <ChannelsContainer>
+                <SidebarCards>
                   {status === 'success' &&
                   channels !== undefined &&
                   channels !== null ? (
@@ -73,10 +76,24 @@ export const Dashboard = () => {
                   ) : (
                     <ChannelsPlaceholder />
                   )}
-                </ChannelsContainer>
+                </SidebarCards>
               </>
             ) : (
-              <h2>hola</h2>
+              <>
+                <ChannelInfo>
+                  <ChannelName>ChannelName</ChannelName>
+                  <ChannelDescription>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facilis id quo ea reiciendis cupiditate expedita hic. Sint
+                    neque modi, suscipit atque porro, amet reiciendis
+                    repudiandae nihil necessitatibus officiis hic ut.
+                  </ChannelDescription>
+                </ChannelInfo>
+                <span className="text-lg font-bold uppercase text-gray-light">
+                  Members
+                </span>
+                <SidebarCards></SidebarCards>
+              </>
             )}
           </SidebarMainContentProps>
 

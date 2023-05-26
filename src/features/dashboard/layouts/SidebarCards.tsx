@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-interface ChannelsContainerProps {
+interface SidebarCardsProps {
   children?: JSX.Element | JSX.Element[]
 }
 
-export const ChannelsContainer: FC<ChannelsContainerProps> = ({ children }) => {
+export const SidebarCards: FC<SidebarCardsProps> = ({ children }) => {
   return <div className="flex h-full w-full flex-col">{children}</div>
 }
