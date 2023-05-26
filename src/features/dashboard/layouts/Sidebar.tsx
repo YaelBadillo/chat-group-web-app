@@ -5,5 +5,5 @@ interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({ children }) => {
-  return <div className="flex w-3/12 flex-col bg-secondary">{children}</div>
+  return <div className="flex w-1/4 flex-col bg-secondary">{children}</div>
 }

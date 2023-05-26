@@ -11,5 +11,5 @@ export const ChannelChat = () => {
   const dashboard = useContext(DashboardContext)
 
   useEffect(() => console.log(location), [])
-  return <ChannelChatContainer></ChannelChatContainer>
+  return <></>
 }

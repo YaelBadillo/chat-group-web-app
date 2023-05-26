@@ -8,6 +8,8 @@ export const SidebarMainContentProps: FC<SidebarMainContentProps> = ({
   children,
 }) => {
   return (
-    <div className="flex flex-grow flex-col gap-y-5 px-6 py-5">{children}</div>
+    <div className="flex w-full flex-grow flex-col gap-y-5 px-6 py-5">
+      {children}
+    </div>
   )
 }
