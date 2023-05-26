@@ -1,4 +1,6 @@
-import { useMatch, Outlet } from 'react-router'
+import { useCallback, useEffect } from 'react'
+
+import { useMatch, useNavigate, Outlet } from 'react-router'
 
 import { DashboardContainer } from '../layouts'
 import {
@@ -13,7 +15,6 @@ import {
   SidebarMainContentProps,
 } from '../features/dashboard'
 import { useDashboard } from '../hooks'
-import { useEffect } from 'react'
 import { Form, Input } from '../components/form'
 import {
   ChannelCard,
@@ -27,8 +28,11 @@ import { UserCard, UserCardPlaceholder } from '../features/user'
 export const Dashboard = () => {
   const { status, user, channels } = useDashboard()
   const match = useMatch('/dashboard/channel/:channelId')
+  const navigate = useNavigate()
 
   useEffect(() => console.log(match), [match])
+
+  const handleBackToDashboard = useCallback(() => navigate(-1), [])
 
   return (
     <DashboardContainer>
@@ -41,7 +45,7 @@ export const Dashboard = () => {
             </>
           ) : (
             <>
-              <Action icon="arrow_back" handleClick={() => {}} />
+              <Action icon="arrow_back" handleClick={handleBackToDashboard} />
               <ActionName name="All channels" />
             </>
           )}
