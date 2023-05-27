@@ -25,6 +25,7 @@ import {
 } from '../features/channel'
 import { UserCard, UserCardPlaceholder } from '../features/user'
 import pet from '../assets/pet.jpg'
+import { MemberCard } from '../features/member'
 
 export const Dashboard = () => {
   const { status, user, channels } = useDashboard()
@@ -108,32 +109,9 @@ export const Dashboard = () => {
                   Members
                 </span>
                 <SidebarCards>
-                  <button className="flex h-max w-full cursor-pointer items-center gap-x-3 rounded-lg p-1 hover:bg-channel-card-hover">
-                    <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-md">
-                      <img src={pet} alt="" className="h-full w-auto" />
-                    </div>
-                    <span className="text-lg font-bold text-gray-dark">
-                      Lorem, ipsum.
-                    </span>
-                  </button>
-
-                  <button className="flex h-max w-full cursor-pointer items-center gap-x-3 rounded-lg p-1 hover:bg-channel-card-hover">
-                    <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-md">
-                      <img src={pet} alt="" className="h-full w-auto" />
-                    </div>
-                    <span className="text-lg font-bold text-gray-dark">
-                      Lorem, ipsum dolor.
-                    </span>
-                  </button>
-
-                  <button className="flex h-max w-full cursor-pointer items-center gap-x-3 rounded-lg p-1 hover:bg-channel-card-hover">
-                    <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-md">
-                      <img src={pet} alt="" className="h-full w-auto" />
-                    </div>
-                    <span className="text-lg font-bold text-gray-dark">
-                      Lorem
-                    </span>
-                  </button>
+                  <MemberCard memberImage={pet} memberName="Lorem Ipsum" />
+                  <MemberCard memberImage={pet} memberName="Lorem Ipsum" />
+                  <MemberCard memberImage={pet} memberName="Lorem Ipsum" />
                 </SidebarCards>
               </>
             )}
