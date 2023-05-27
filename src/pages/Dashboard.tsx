@@ -24,6 +24,7 @@ import {
   ChannelsPlaceholder,
 } from '../features/channel'
 import { UserCard, UserCardPlaceholder } from '../features/user'
+import pet from '../assets/pet.jpg'
 
 export const Dashboard = () => {
   const { status, user, channels } = useDashboard()
@@ -106,7 +107,34 @@ export const Dashboard = () => {
                 <span className="text-lg font-bold uppercase text-gray-light">
                   Members
                 </span>
-                <SidebarCards></SidebarCards>
+                <SidebarCards>
+                  <button className="flex h-max w-full cursor-pointer items-center gap-x-3 rounded-lg p-1 hover:bg-channel-card-hover">
+                    <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-md">
+                      <img src={pet} alt="" className="h-full w-auto" />
+                    </div>
+                    <span className="text-lg font-bold text-gray-dark">
+                      Lorem, ipsum.
+                    </span>
+                  </button>
+
+                  <button className="flex h-max w-full cursor-pointer items-center gap-x-3 rounded-lg p-1 hover:bg-channel-card-hover">
+                    <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-md">
+                      <img src={pet} alt="" className="h-full w-auto" />
+                    </div>
+                    <span className="text-lg font-bold text-gray-dark">
+                      Lorem, ipsum dolor.
+                    </span>
+                  </button>
+
+                  <button className="flex h-max w-full cursor-pointer items-center gap-x-3 rounded-lg p-1 hover:bg-channel-card-hover">
+                    <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-md">
+                      <img src={pet} alt="" className="h-full w-auto" />
+                    </div>
+                    <span className="text-lg font-bold text-gray-dark">
+                      Lorem
+                    </span>
+                  </button>
+                </SidebarCards>
               </>
             )}
           </SidebarMainContentProps>
