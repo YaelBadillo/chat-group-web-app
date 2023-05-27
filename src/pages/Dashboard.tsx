@@ -32,7 +32,7 @@ export const Dashboard = () => {
 
   useEffect(() => console.log(match), [match])
 
-  const handleBackToDashboard = useCallback(() => navigate(-1), [])
+  const handleBackToDashboard = useCallback(() => navigate('/dashboard'), [])
 
   return (
     <DashboardContainer>
