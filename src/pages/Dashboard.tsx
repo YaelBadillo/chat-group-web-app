@@ -50,6 +50,16 @@ export const Dashboard = () => {
             </>
           )}
         </NavbarActionSection>
+        {match === null ? (
+          <></>
+        ) : (
+          <span className="text-lg font-bold uppercase text-gray-light">
+            {
+              channels?.filter(({ id }) => id === match.params.channelId)[0]
+                .name
+            }
+          </span>
+        )}
       </Navbar>
 
       <MainContentContainer>

@@ -5,5 +5,9 @@ interface NavbarProps {
 }
 
 export const Navbar: FC<NavbarProps> = ({ children }) => {
-  return <div className="h-max w-full text-white shadow-line">{children}</div>
+  return (
+    <div className="flex h-max w-full items-center gap-x-16 text-white shadow-line">
+      {children}
+    </div>
+  )
 }
