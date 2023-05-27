@@ -14,6 +14,7 @@ module.exports = {
         'group-image': '#252329',
         'group-name': '#BDBDBD',
         'channel-card-hover': '#2b242d',
+        'send-button-color': '#2F80ED',
       },
 
       animation: {
