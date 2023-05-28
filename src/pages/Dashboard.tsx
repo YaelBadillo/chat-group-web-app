@@ -97,12 +97,19 @@ export const Dashboard = () => {
             ) : (
               <>
                 <ChannelInfo>
-                  <ChannelName>ChannelName</ChannelName>
+                  <ChannelName>
+                    {
+                      channels?.filter(
+                        ({ id }) => id === match.params.channelId
+                      )[0].name
+                    }
+                  </ChannelName>
                   <ChannelDescription>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Facilis id quo ea reiciendis cupiditate expedita hic. Sint
-                    neque modi, suscipit atque porro, amet reiciendis
-                    repudiandae nihil necessitatibus officiis hic ut.
+                    {
+                      channels?.filter(
+                        ({ id }) => id === match.params.channelId
+                      )[0].description
+                    }
                   </ChannelDescription>
                 </ChannelInfo>
                 <span className="text-lg font-bold uppercase text-gray-light">
