@@ -5,5 +5,5 @@ interface SidebarCardsProps {
 }
 
 export const SidebarCards: FC<SidebarCardsProps> = ({ children }) => {
-  return <div className="flex h-full w-full flex-col">{children}</div>
+  return <div className="flex h-full w-full flex-col gap-y-3">{children}</div>
 }
