@@ -10,25 +10,11 @@ import {
   MainContentContainer,
   Navbar,
   NavbarActionSection,
-  Sidebar,
-  SidebarCards,
-  SidebarMainContentProps,
 } from '../features/dashboard'
 import { useDashboard } from '../hooks'
-import { Form, Input } from '../components/form'
-import {
-  ChannelCard,
-  ChannelDescription,
-  ChannelInfo,
-  ChannelName,
-  ChannelsPlaceholder,
-} from '../features/channel'
-import { UserCard, UserCardPlaceholder } from '../features/user'
-import pet from '../assets/pet.jpg'
-import { MemberCard } from '../features/member'
 
 export const Dashboard = () => {
-  const { status, user, channels } = useDashboard()
+  const { status, sockets, user, channels } = useDashboard()
   const match = useMatch('/dashboard/channel/:channelId')
   const navigate = useNavigate()
 
@@ -65,75 +51,7 @@ export const Dashboard = () => {
       </Navbar>
 
       <MainContentContainer>
-        <Sidebar>
-          <SidebarMainContentProps>
-            {match === null ? (
-              <>
-                <Form handleSubmit={() => {}}>
-                  <Input
-                    type="text"
-                    name="search"
-                    placeholder="Search"
-                    value=""
-                    onChange={() => {}}
-                    onBlur={() => {}}
-                    startIcon="search"
-                    error={false}
-                  />
-                </Form>
-
-                <SidebarCards>
-                  {status === 'success' &&
-                  channels !== undefined &&
-                  channels !== null ? (
-                    channels.map(({ id, name }) => (
-                      <ChannelCard name={name} id={id} key={id} />
-                    ))
-                  ) : (
-                    <ChannelsPlaceholder />
-                  )}
-                </SidebarCards>
-              </>
-            ) : (
-              <>
-                <ChannelInfo>
-                  <ChannelName>
-                    {
-                      channels?.filter(
-                        ({ id }) => id === match.params.channelId
-                      )[0].name
-                    }
-                  </ChannelName>
-                  <ChannelDescription>
-                    {
-                      channels?.filter(
-                        ({ id }) => id === match.params.channelId
-                      )[0].description
-                    }
-                  </ChannelDescription>
-                </ChannelInfo>
-                <span className="text-lg font-bold uppercase text-gray-light">
-                  Members
-                </span>
-                <SidebarCards>
-                  <MemberCard memberImage={pet} memberName="Lorem Ipsum" />
-                  <MemberCard memberImage={pet} memberName="Lorem Ipsum" />
-                  <MemberCard memberImage={pet} memberName="Lorem Ipsum" />
-                </SidebarCards>
-              </>
-            )}
-          </SidebarMainContentProps>
-
-          {status ? (
-            <UserCard
-              name={user !== undefined && user !== null ? user.name : ''}
-            />
-          ) : (
-            <UserCardPlaceholder />
-          )}
-        </Sidebar>
-
-        <DashboardContext.Provider value={{ status, user, channels }}>
+        <DashboardContext.Provider value={{ status, sockets, user, channels }}>
           <Outlet />
         </DashboardContext.Provider>
       </MainContentContainer>
