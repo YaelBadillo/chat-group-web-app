@@ -33,5 +33,14 @@ export const useSockets = () => {
     messageSocket.isConnected,
   ])
 
-  return { connect, disconnect, areConnected }
+  return {
+    connect,
+    disconnect,
+    areConnected,
+    sockets: {
+      channelSocket: channelSocket.socket,
+      memberSocket: memberSocket.socket,
+      messageSocket: messageSocket.socket,
+    },
+  }
 }

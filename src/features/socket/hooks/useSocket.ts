@@ -23,5 +23,5 @@ export const useSocket = (
     socketEvents
   )
 
-  return { isConnected, connect, disconnect, areAllEventsConfigured }
+  return { socket, isConnected, connect, disconnect, areAllEventsConfigured }
 }

@@ -9,7 +9,7 @@ export const useDashboard = () => {
     value: userAndChannels,
     error,
   } = useUserAndChannels()
-  const { connect, disconnect, areConnected } = useSockets()
+  const { connect, disconnect, areConnected, sockets } = useSockets()
   const [status, setStatus] = useState<
     'idle' | 'pending' | 'success' | 'error'
   >('idle')
@@ -26,6 +26,7 @@ export const useDashboard = () => {
 
   return {
     status,
+    sockets,
     user: userAndChannels?.user,
     channels: userAndChannels?.channels,
   }
