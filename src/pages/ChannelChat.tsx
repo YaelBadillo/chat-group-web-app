@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 
 import { useParams } from 'react-router-dom'
+import { useFormik } from 'formik'
 
 import {
   DashboardContext,
@@ -28,6 +29,7 @@ export const ChannelChat = () => {
     status: dashboardStatus,
     user,
     channels,
+    sockets,
   } = useContext(DashboardContext)
   const {
     status: membersStatus,
@@ -35,13 +37,7 @@ export const ChannelChat = () => {
     error,
     execute,
   } = useChannelMembers(channelId)
-
-  useEffect(() => {
-    //dashboard.sockets?.memberSocket.emit('')
-    console.log(':c')
-    console.log(membersStatus)
-    console.log(channelMembers)
-  }, [])
+  const formik = useFormik({ initialValues: { text: '' }, onSubmit: () => {} })
 
   useEffect(() => {
     execute()
@@ -121,7 +117,12 @@ export const ChannelChat = () => {
           />
         </div>
         <div className="flex flex-row px-20 py-10">
-          <InputTextMessage />
+          <InputTextMessage
+            name="text"
+            value={formik.values.text}
+            onChange={formik.handleChange}
+            onSubmit={formik.handleSubmit}
+          />
         </div>
       </div>
     </>
