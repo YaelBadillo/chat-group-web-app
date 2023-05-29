@@ -11,11 +11,13 @@ import {
 import { TextMessage, InputTextMessage } from '../features/chat'
 import {
   ChannelDescription,
+  ChannelDescriptionPlaceholder,
   ChannelInfo,
   ChannelName,
+  ChannelNamePlaceholder,
   ChannelsPlaceholder,
 } from '../features/channel'
-import { MemberCard } from '../features/member'
+import { MemberCard, MemberCardPlaceholder } from '../features/member'
 import { UserCard, UserCardPlaceholder } from '../features/user'
 import { useChannelMembers } from '../features/member'
 import pet from '../assets/pet.jpg'
@@ -50,12 +52,20 @@ export const ChannelChat = () => {
       <Sidebar>
         <SidebarMainContentProps>
           <ChannelInfo>
-            <ChannelName>
-              {channels?.filter(({ id }) => id === channelId)[0].name}
-            </ChannelName>
-            <ChannelDescription>
-              {channels?.filter(({ id }) => id === channelId)[0].description}
-            </ChannelDescription>
+            {membersStatus === 'success' ? (
+              <ChannelName>
+                {channels?.filter(({ id }) => id === channelId)[0].name}
+              </ChannelName>
+            ) : (
+              <ChannelNamePlaceholder />
+            )}
+            {membersStatus === 'success' ? (
+              <ChannelDescription>
+                {channels?.filter(({ id }) => id === channelId)[0].description}
+              </ChannelDescription>
+            ) : (
+              <ChannelDescriptionPlaceholder />
+            )}
           </ChannelInfo>
           <span className="text-lg font-bold uppercase text-gray-light">
             Members
@@ -70,7 +80,13 @@ export const ChannelChat = () => {
                 />
               ))
             ) : (
-              <ChannelsPlaceholder />
+              <>
+                <MemberCardPlaceholder />
+                <MemberCardPlaceholder />
+                <MemberCardPlaceholder />
+                <MemberCardPlaceholder />
+                <MemberCardPlaceholder />
+              </>
             )}
           </SidebarCards>
         </SidebarMainContentProps>
